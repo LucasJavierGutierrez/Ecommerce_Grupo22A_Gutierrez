@@ -92,7 +92,7 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../img/imgCarrousel2.jpg" class="d-block w-100" style="height: 100%;" alt="...">
+                    <img src="../img/imgCarrousel.jpg" class="d-block w-100" style="height: 100%;" alt="...">
                 </div>
                 <div class="carousel-item">
                     <img src="../img/imgCarrousel3.png" class="d-block w-100" alt="...">
@@ -116,12 +116,12 @@
             <div class="col">
                 <div class="card">
                     <div class="face front">
-                        <img src="../img/celularCard.jpg" alt="Alternate Text" />
-                        <h3>Celulares</h3>
+                        <img src="../img/ImagenPlacaMano.jpg" alt="Tornillos" />
+                        <h3>Tornillos</h3>
                     </div>
                     <div class="face back">
-                        <h3>Celulares</h3>
-                        <p>Ver todos los productos Celulares</p>
+                        <h3>Tornillos</h3>
+                        <p>Ver todos los productos Tornillos</p>
                         <div class="link">
                             <a href="ShopCelulares.aspx">Celulares</a>
                         </div>
@@ -131,14 +131,14 @@
             <div class="col">
                 <div class="card">
                     <div class="face front">
-                        <img src="../img/notebookCard.jpg" alt="Alternate Text" />
-                        <h3>Notebooks</h3>
+                        <img src="../img/ImagenPlaca.png" alt="Placas" />
+                        <h3> Placas</h3>
                     </div>
                     <div class="face back">
-                        <h3>Notebooks/PC</h3>
-                        <p>Ver todos los productos Notebooks/PC</p>
+                        <h3>Placas de Titanio</h3>
+                        <p>Ver todos los productos Placas</p>
                         <div class="link">
-                            <a href="ShopCompus.aspx">Notebooks/PC</a>
+                            <a href="ShopCompus.aspx">Placas de Titanio</a>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
             <div class="col">
                 <div class="card">
                     <div class="face front">
-                        <img src="../img/electrodomesticosCard.jpg" alt="Alternate Text" />
+                        <img src="../img/Card.jpg" alt="Todos los productos" />
                         <h3>Ver todo</h3>
                     </div>
                     <div class="face back">

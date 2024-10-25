@@ -8,11 +8,11 @@
 
         <div class="col" style="color: #707B7C; padding: 70px;">
             <h2 style="text-align: center;">Quienes Somos ?</h2>
-            <p style="text-align: center;">STORE DIGITAL nace como necesidad de compartir la pasión por la tecnologia a un costo accesible</p>
+            <p style="text-align: center;">Grupo ROOT es una empresa dedicada a la fabricación y comercialización de productos medicos</p>
             <br />
-            <p style="text-align: center;">Siempre me gustaron las tecnologias y me interesaban los ultimos modelos de celulares, notebooks y demás, pero por diferentes motivos siempre se me hizo dificil conseguir y disfrutar estos articulos, sea por una cuestión económica o porque ya no estan a la venta. </p>
+            <p style="text-align: center;">Nuestros productos son realizados con titanio de alta calidad, para la mejor oseointegración. </p>
             <br />
-            <p style="text-align: center;">Fue entonces, que de a poco me fui involucrando cada vez mas en este mundo, hoy en dia teniendo la posibilidad de ofrecerles productos de excelente calidad a un precio accesible!!... Espero que lo disfruten.</p>
+            <p style="text-align: center;">Contamos con placas de titanio, tornillos de titanio, tornillos de PEEK y muchos productos mas !!</p>
         </div>
         <div class="col-2"></div>
     </div>
