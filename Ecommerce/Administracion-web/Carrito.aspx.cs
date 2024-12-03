@@ -49,7 +49,7 @@ namespace Administracion_web
             {
                 if (Request.QueryString["Id"] != null && Request.QueryString["IdColor"] != null)
                 {
-                    if (ListaEnCarrito.Find(x => x.item.Id.ToString() == Request.QueryString["Id"] && x.color.Id.ToString() == Request.QueryString["IdColor"]) == null)
+                    if (ListaEnCarrito.Find(x => x.item.Id.ToString() == Request.QueryString["Id"] && x.Orificios.Id.ToString() == Request.QueryString["IdColor"]) == null)
                     {
                         List<Producto> listadoOriginal = (List<Producto>)Session["listadoProductos"];
                         var cantidadProductosCarritoView = Session["cantidadProductosCarrito"];
@@ -68,8 +68,8 @@ namespace Administracion_web
 
                         Session.Add("cantidadProductosCarrito", cantidadProductosCarrito);
 
-                        colorNegocio colorNegocio = new colorNegocio();
-                        List<Color> colorListaTotal = colorNegocio.listarTodos();
+                        OrificiosNegocio colorNegocio = new OrificiosNegocio();
+                        List<Orificios> colorListaTotal = colorNegocio.listarTodos();
 
                         itemCarrito aux = new itemCarrito();
 
@@ -78,7 +78,7 @@ namespace Administracion_web
                             aux.cantidad = 1;
                         }
                         aux.item = listadoOriginal.Find(x => x.Id.ToString() == Request.QueryString["Id"]);
-                        aux.color = colorListaTotal.Find(x => x.Id.ToString() == Request.QueryString["IdColor"]);
+                        aux.Orificios = colorListaTotal.Find(x => x.Id.ToString() == Request.QueryString["IdColor"]);
                         aux.subtotal = aux.cantidad * aux.item.Precio;
                         aux.id = aux.item.Id;
 
@@ -117,7 +117,7 @@ namespace Administracion_web
             totalAux = 0;
             string[] argument = ((Button)sender).CommandArgument.Split(',');
             List<itemCarrito> ListaEnCarrito = (List<itemCarrito>)Session["listaEnCarro"];
-            itemCarrito sobrecarga = ListaEnCarrito.Find(x => x.id.ToString() == argument[0].ToString() && x.color.Id.ToString() == argument[1].ToString());
+            itemCarrito sobrecarga = ListaEnCarrito.Find(x => x.id.ToString() == argument[0].ToString() && x.Orificios.Id.ToString() == argument[1].ToString());
 
 
             sobrecarga.cantidad++;
@@ -126,11 +126,11 @@ namespace Administracion_web
             foreach (itemCarrito item in ListaEnCarrito)
             {
 
-                if (item.id.ToString() == argument[0] && item.color.Id.ToString() == argument[1])
+                if (item.id.ToString() == argument[0] && item.Orificios.Id.ToString() == argument[1])
                 {
                     item.id = sobrecarga.id;
                     item.item = sobrecarga.item;
-                    item.color = sobrecarga.color;
+                    item.Orificios = sobrecarga.Orificios;
                     item.cantidad = sobrecarga.cantidad;
                     item.subtotal = sobrecarga.subtotal;
 
@@ -164,18 +164,18 @@ namespace Administracion_web
 
             string[] argument = ((Button)sender).CommandArgument.Split(',');
             List<itemCarrito> ListaEnCarrito = (List<itemCarrito>)Session["listaEnCarro"];
-            itemCarrito sobrecarga = ListaEnCarrito.Find(x => x.id.ToString() == argument[0] && x.color.Id.ToString() == argument[1]);
+            itemCarrito sobrecarga = ListaEnCarrito.Find(x => x.id.ToString() == argument[0] && x.Orificios.Id.ToString() == argument[1]);
             if (sobrecarga.cantidad > 1)
             {
                 sobrecarga.cantidad--;
                 sobrecarga.subtotal = sobrecarga.item.Precio * sobrecarga.cantidad;
                 foreach (itemCarrito item in ListaEnCarrito)
                 {
-                    if (item.id.ToString() == argument[0] && item.color.Id.ToString() == argument[1])
+                    if (item.id.ToString() == argument[0] && item.Orificios.Id.ToString() == argument[1])
                     {
                         item.id = sobrecarga.id;
                         item.item = sobrecarga.item;
-                        item.color = sobrecarga.color;
+                        item.Orificios = sobrecarga.Orificios;
                         item.cantidad = sobrecarga.cantidad;
                         item.subtotal = sobrecarga.subtotal;
 

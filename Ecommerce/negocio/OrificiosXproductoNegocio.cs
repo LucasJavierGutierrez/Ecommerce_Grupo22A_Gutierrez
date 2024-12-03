@@ -5,12 +5,12 @@ using System.Data.SqlClient;
 
 namespace negocio
 {
-    public class ColoresXproductoNegocio
+    public class OrificiosXproductoNegocio
     {
 
-        public List<ColoresXproducto> listarL()
+        public List<OrificiosXproducto> listarL()
         {
-            List<ColoresXproducto> lista = new List<ColoresXproducto>();
+            List<OrificiosXproducto> lista = new List<OrificiosXproducto>();
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
@@ -20,7 +20,7 @@ namespace negocio
                 comando.CommandType = System.Data.CommandType.Text;
 
 
-                comando.CommandText = "SELECT P.ID AS IDPRODUCTO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, C.STOCK, C.IDCOLOR FROM PRODUCTOS P INNER JOIN MARCAS M ON M.ID = P.IDMARCA INNER JOIN COLORES_X_PRODUCTO C ON C.IDPRODUCTO = P.ID";
+                comando.CommandText = "SELECT P.ID AS IDPRODUCTO, M.ID AS IDMATERIAL, M.NOMBRE AS NOMBREMATERIAL, C.STOCK, C.IDORIFICIOS FROM PRODUCTOS P INNER JOIN MATERIALES M ON M.ID = P.IDMATERIAL INNER JOIN ORIFICIOS_X_PRODUCTO C ON C.IDPRODUCTO = P.ID";
 
 
 
@@ -30,18 +30,18 @@ namespace negocio
                 lector = comando.ExecuteReader();
                 while (lector.Read())
                 {
-                    ColoresXproducto prod = new ColoresXproducto();
+                    OrificiosXproducto prod = new OrificiosXproducto();
                     prod.Stock = (int)lector["STOCK"];
 
-                    prod.Color = new Color();
-                    prod.Color.Id = (int)lector["IDCOLOR"];
+                    prod.Orificios = new Orificios();
+                    prod.Orificios.Id = (int)lector["IDCOLOR"];
 
                     prod.Producto = new Producto();
                     prod.Producto.Id = (int)lector["IDPRODUCTO"];
 
-                    prod.Producto.Marca = new Marca();
-                    prod.Producto.Marca.Id = (int)lector["IDMARCA"];
-                    prod.Producto.Marca.Nombre = (string)lector["NOMBREMARCA"];
+                    prod.Producto.Material = new Material();
+                    prod.Producto.Material.Id = (int)lector["IDMATERIAL"];
+                    prod.Producto.Material.Nombre = (string)lector["NOMBREMATERIAL"];
 
 
                     lista.Add(prod);
@@ -63,14 +63,14 @@ namespace negocio
         }
 
 
-        public void agregarSP(ColoresXproducto cxp)
+        public void agregarSP(OrificiosXproducto cxp)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearProcedimiento("SP_AGREGARCOLOR_x_PRODUCTO");
+                datos.setearProcedimiento("SP_AGREGARORIFICIOS_x_PRODUCTO");
                 datos.setearParametro("@IdProducto", cxp.Producto.Id);
-                datos.setearParametro("@IdColor", cxp.Color.Id);
+                datos.setearParametro("@IdOrificios", cxp.Orificios.Id);
                 datos.setearParametro("@Stock", cxp.Stock);
 
 
@@ -86,14 +86,14 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public void modificarSP(ColoresXproducto cxp)
+        public void modificarSP(OrificiosXproducto cxp)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearProcedimiento("SP_MODIFICARCOLOR_x_PRODUCTO");
+                datos.setearProcedimiento("SP_MODIFICARORIFICIOS_x_PRODUCTO");
                 datos.setearParametro("@IdProducto", cxp.Producto.Id);
-                datos.setearParametro("@IdColor", cxp.Color.Id);
+                datos.setearParametro("@IdOrificios", cxp.Orificios.Id);
                 datos.setearParametro("@Stock", cxp.Stock);
 
 
@@ -110,9 +110,9 @@ namespace negocio
             }
 
         }
-        public List<ColoresXproducto> listarTodo()
+        public List<OrificiosXproducto> listarTodo()
         {
-            List<ColoresXproducto> lista = new List<ColoresXproducto>();
+            List<OrificiosXproducto> lista = new List<OrificiosXproducto>();
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
@@ -120,22 +120,22 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT CXP.IDPRODUCTO,P.NOMBRE AS PRODUCTO, CXP.IDCOLOR,C.NOMBRE AS COLOR,CXP.STOCK FROM COLORES_X_PRODUCTO CXP INNER JOIN PRODUCTOS P ON P.ID=CXP.IDPRODUCTO INNER JOIN COLORES C ON C.ID= CXP.IDCOLOR";
+                comando.CommandText = "SELECT CXP.IDPRODUCTO,P.NOMBRE AS PRODUCTO, CXP.IDORIFICIOS,C.NOMBRE AS ORIFICIOS,CXP.STOCK FROM ORIFICIOS_X_PRODUCTO CXP INNER JOIN PRODUCTOS P ON P.ID=CXP.IDPRODUCTO INNER JOIN ORIFICIOS C ON C.ID= CXP.IDORIFICIOS";
                 comando.Connection = conexion;
                 conexion.Open();
 
                 lector = comando.ExecuteReader();
                 while (lector.Read())
                 {
-                    ColoresXproducto cxp = new ColoresXproducto();
+                    OrificiosXproducto cxp = new OrificiosXproducto();
 
                     cxp.Producto = new Producto();
                     cxp.Producto.Id = (int)lector["IDPRODUCTO"];
                     cxp.Producto.Nombre = (string)lector["PRODUCTO"];
 
-                    cxp.Color = new Color();
-                    cxp.Color.Id = (int)lector["IDCOLOR"];
-                    cxp.Color.Nombre = (string)lector["COLOR"];
+                    cxp.Orificios = new Orificios();
+                    cxp.Orificios.Id = (int)lector["IDORIFICIOS"];
+                    cxp.Orificios.Nombre = (string)lector["ORIFICIOS"];
                     cxp.Stock = (int)lector["STOCK"];
 
                     lista.Add(cxp);
@@ -154,23 +154,23 @@ namespace negocio
                 conexion.Close();
             }
         }
-        public ColoresXproducto Listar(Producto pr, Color color)
+        public OrificiosXproducto Listar(Producto pr, Orificios Orificios)
         {
 
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                ColoresXproducto cxp = new ColoresXproducto();
+                OrificiosXproducto cxp = new OrificiosXproducto();
                 datos.setearProcedimiento("SP_ListarStock");
                 datos.setearParametro("@IdProducto", pr.Id);
-                datos.setearParametro("@IdColor", color.Id);
+                datos.setearParametro("@IdOrificios", Orificios.Id);
 
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
 
                     cxp.Producto = pr;
-                    cxp.Color = color;
+                    cxp.Orificios = Orificios;
                     cxp.Stock = (int)datos.Lector["STOCK"];
 
 
@@ -197,7 +197,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select SUM(CXP.STOCK) from COLORES_X_PRODUCTO CXP WHERE IDPRODUCTO= " + idProducto;
+                comando.CommandText = "Select SUM(CXP.STOCK) from ORIFICIOS_X_PRODUCTO CXP WHERE IDPRODUCTO= " + idProducto;
                 comando.Connection = conexion;
                 conexion.Open();
 
@@ -243,9 +243,9 @@ namespace negocio
         //}
 
 
-        public List<Color> listarColorXProducto(string idProducto)
+        public List<Orificios> listarOrificiosXProducto(string idProducto)
         {
-            List<Color> lista = new List<Color>();
+            List<Orificios> lista = new List<Orificios>();
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
@@ -253,7 +253,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT C.ID as IDCOLOR, C.NOMBRE NOMBRECOLOR FROM COLORES_X_PRODUCTO CXP INNER JOIN COLORES C ON C.ID=CXP.IDCOLOR WHERE CXP.IDPRODUCTO = " + idProducto;
+                comando.CommandText = "SELECT C.ID as IDORIFICIOS, C.NOMBRE ORIFICIOS FROM ORIFICIOS_X_PRODUCTO CXP INNER JOIN ORIFICIOS C ON C.ID=CXP.IDORIFICIOS WHERE CXP.IDPRODUCTO = " + idProducto;
 
 
                 comando.Connection = conexion;
@@ -263,11 +263,11 @@ namespace negocio
 
                 while (lector.Read())
                 {
-                    Color color = new Color();
-                    color.Id = (int)lector["IDCOLOR"];
-                    color.Nombre = (string)lector["NOMBRECOLOR"];
+                    Orificios Orificios = new Orificios();
+                    Orificios.Id = (int)lector["IDORIFICIOS"];
+                    Orificios.Nombre = (string)lector["ORIFICIOS"];
 
-                    lista.Add(color);
+                    lista.Add(Orificios);
                 }
 
 

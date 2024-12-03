@@ -69,7 +69,7 @@ namespace Administracion_web
             CompraNegocio compraNegocio = new CompraNegocio();
 
             string idVenta = Request.QueryString["IdVenta"];
-            List<Color> listColor = compraNegocio.listaColoresXVentaXProducto(idVenta, idProducto);
+            List<Orificios> listColor = compraNegocio.listaOrificiosXVentaXProducto(idVenta, idProducto);
             ddlColor.DataSource = listColor;
             ddlColor.DataValueField = "Id";
             ddlColor.DataTextField = "Nombre";
@@ -131,7 +131,7 @@ namespace Administracion_web
             listaCarrito = negocio.listarXVenta(Request.QueryString["IdVenta"]);
             if (idProducto != null && idColor != null)
             {
-                cantStockDisponible = listaCarrito.Find(x => x.item.Id.ToString() == idProducto && x.color.Id.ToString() == idColor).cantidad;
+                cantStockDisponible = listaCarrito.Find(x => x.item.Id.ToString() == idProducto && x.Orificios.Id.ToString() == idColor).cantidad;
                 if (int.Parse(txtCantidad.Text) > cantStockDisponible)
                 {
                     lblErrorCantidadStock.Text = "Compraste " + cantStockDisponible + " Productos!!";
@@ -143,8 +143,8 @@ namespace Administracion_web
                 //creo Variables para completar la solicitud 
                 productoNegocio prNegocio = new productoNegocio();
                 Producto pr = prNegocio.listar().Find(x => x.Id.ToString() == (string)Session["IdProductoSeleccionado"]);
-                colorNegocio cNegocio = new colorNegocio();
-                Color color = cNegocio.listarTodos().Find(x => x.Id.ToString() == (string)Session["IdColorSeleccionado"]);
+                OrificiosNegocio cNegocio = new OrificiosNegocio();
+                Orificios color = cNegocio.listarTodos().Find(x => x.Id.ToString() == (string)Session["IdColorSeleccionado"]);
                 Usuario usuario = (Usuario)Session["Usuario"];
 
 
@@ -168,7 +168,7 @@ namespace Administracion_web
                     solicitudDevolucion.IdVenta = int.Parse(idVenta);
                     solicitudDevolucion.producto = pr;
                     solicitudDevolucion.cantidad = int.Parse(txtCantidad.Text);
-                    solicitudDevolucion.color = color;
+                    solicitudDevolucion.Orificios = color;
                     solicitudDevolucion.motivo = txtMotivo.Text;
                     solicitudDevolucion.usuario = usuario;
 
@@ -227,7 +227,7 @@ namespace Administracion_web
                 int secondValue = Convert.ToInt32(argument[1]);
 
                 List<SolicitudDevolucion> listDevoluciones = (List<SolicitudDevolucion>)Session["listaEnCarro"];
-                SolicitudDevolucion elim = listDevoluciones.Find(x => x.color.Id == secondValue && x.producto.Id == firstValue);
+                SolicitudDevolucion elim = listDevoluciones.Find(x => x.Orificios.Id == secondValue && x.producto.Id == firstValue);
 
                 listDevoluciones.Remove(elim);
                 Session.Add("listaEnCarro", listDevoluciones);

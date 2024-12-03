@@ -163,7 +163,7 @@ namespace negocio
                 datos.setearProcedimiento("SP_agregarDetalleVenta");
                 datos.setearParametro("@Id", id);
                 datos.setearParametro("@IdProducto", item.id);
-                datos.setearParametro("@IdColor", item.color.Id);
+                datos.setearParametro("@IdOrificios", item.Orificios.Id);
                 datos.setearParametro("@Cantidad", item.cantidad);
                 datos.setearParametro("@Precio", item.subtotal);
 
@@ -183,11 +183,11 @@ namespace negocio
 
 
 
-        public List<Color> listaColoresXVentaXProducto(string idVenta, string idProducto)
+        public List<Orificios> listaOrificiosXVentaXProducto(string idVenta, string idProducto)
         {
 
 
-            List<Color> lista = new List<Color>();
+            List<Orificios> lista = new List<Orificios>();
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
@@ -195,7 +195,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT C.ID AS IDCOLOR, C.NOMBRE AS NOMBRECOLOR FROM DETALLE_VENTA INNER JOIN COLORES C ON C.ID = IDCOLOR WHERE IDVENTA=" + idVenta + " AND IDPRODUCTO= " + idProducto;
+                comando.CommandText = "SELECT C.ID AS IDORIFICIOS, C.NOMBRE AS ORIFICIOS FROM DETALLE_VENTA INNER JOIN ORIFICIOS C ON C.ID = IDORIFICIOS WHERE IDVENTA=" + idVenta + " AND IDPRODUCTO= " + idProducto;
 
 
                 comando.Connection = conexion;
@@ -206,9 +206,9 @@ namespace negocio
                 while (lector.Read())
                 {
 
-                    Color color = new Color();
-                    color.Id = (int)lector["IDCOLOR"];
-                    color.Nombre = (string)lector["NOMBRECOLOR"];
+                    Orificios color = new Orificios();
+                    color.Id = (int)lector["IDORIFICIOS"];
+                    color.Nombre = (string)lector["ORIFICIOS"];
 
 
 
@@ -245,7 +245,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select DV.IDVENTA, PR.ID AS IDPRODUCTO, PR.NOMBRE AS NOMBREPRODUCTO,C.ID as IDCOLOR, C.NOMBRE as NOMBRECOLOR, DV.CANTIDAD, DV.PRECIO from DETALLE_VENTA DV INNER JOIN PRODUCTOS PR ON PR.ID = DV.IDPRODUCTO INNER JOIN COLORES C ON C.ID = DV.IDCOLOR WHERE DV.IDVENTA= " + idVenta;
+                comando.CommandText = "Select DV.IDVENTA, PR.ID AS IDPRODUCTO, PR.NOMBRE AS NOMBREPRODUCTO,C.ID as IDORIFICIOS, C.NOMBRE as ORIFICIOS, DV.CANTIDAD, DV.PRECIO from DETALLE_VENTA DV INNER JOIN PRODUCTOS PR ON PR.ID = DV.IDPRODUCTO INNER JOIN ORIFICIOS C ON C.ID = DV.IDORIFICIOS WHERE DV.IDVENTA= " + idVenta;
 
 
                 comando.Connection = conexion;
@@ -260,9 +260,9 @@ namespace negocio
                     carrito.cantidad = (int)lector["CANTIDAD"];
                     carrito.subtotal = (decimal)lector["PRECIO"];
                         
-                    carrito.color = new Color();
-                    carrito.color.Id = (int)lector["IDCOLOR"];
-                    carrito.color.Nombre = (string)lector["NOMBRECOLOR"];
+                    carrito.Orificios = new Orificios();
+                    carrito.Orificios.Id = (int)lector["IDORIFICIOS"];
+                    carrito.Orificios.Nombre = (string)lector["ORIFICIOS"];
 
                     carrito.item = new Producto();
                     carrito.item.Id = (int)lector["IDPRODUCTO"];

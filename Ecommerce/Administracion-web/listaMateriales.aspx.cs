@@ -16,7 +16,7 @@ namespace Administracion_web
         protected void Page_Load(object sender, EventArgs e)
         {
             confirmaEliminacion = false;
-            marcaNegocio negocio = new marcaNegocio();
+            materialNegocio negocio = new materialNegocio();
             dgvListaMarcas.DataSource = negocio.listar();
             dgvListaMarcas.DataBind();
         }
@@ -24,7 +24,7 @@ namespace Administracion_web
         protected void dgvListaMarcas_SelectedIndexChanged(object sender, EventArgs e)
         {
             string idSeleccionado = dgvListaMarcas.SelectedDataKey.Value.ToString();
-            Response.Redirect("agregarMarca.aspx?Id=" + idSeleccionado, false);
+            Response.Redirect("agregarMaterial.aspx?Id=" + idSeleccionado, false);
        
         }
 
@@ -50,20 +50,20 @@ namespace Administracion_web
                 if (chkConfirmarEliminacion.Checked)
                 {
                     int idSeleccionado = int.Parse(Session["idMarcaEliminar"].ToString());
-                    marcaNegocio negocioMarca = new marcaNegocio();
+                    materialNegocio negocioMarca = new materialNegocio();
 
           
 
 
-                    ColoresXproductoNegocio negocio = new ColoresXproductoNegocio();
-                    List<ColoresXproducto> lista = negocio.listarL();
+                    OrificiosXproductoNegocio negocio = new OrificiosXproductoNegocio();
+                    List<OrificiosXproducto> lista = negocio.listarL();
 
                     bool hayStock = false;
                     foreach (var item in lista)
                     {
 
 
-                        if (item.Producto.Marca.Id == idSeleccionado || item.Producto.Marca == null)
+                        if (item.Producto.Material.Id == idSeleccionado || item.Producto.Material == null)
                         {
                             if (item.Stock == 0)
                             {

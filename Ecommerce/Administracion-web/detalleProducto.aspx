@@ -36,7 +36,7 @@
         <div class="col-4">
             <div style="display: inline-block; padding-left: 74px;">
                 <h4 style="padding-top: 30px;" class="card-title"><%= prod.Nombre %></h4>
-                <h6 class="card-text" style="font-weight: bold;"><%= prod.Marca.Nombre%></h6>
+                <h6 class="card-text" style="font-weight: bold;"><%= prod.Material.Nombre%></h6>
                 <p class="card-text" style="font-weight: bold;"><%= prod.Tipo.Nombre%></p>
                 <%if (prod.Tipo.Nombre == "Notebook" || prod.Tipo.Nombre == "PC")
                     {%>
@@ -53,13 +53,13 @@
                     {%>
                 <p style="color: black; background: #EAECEE;" class="card-text">DESCRIPCION:   <%= prod.Descripcion%></p>
                 <%} %>
-                <asp:DropDownList ID="ddlColores" OnDataBound="ddlColores_DataBound" OnSelectedIndexChanged="ddlColores_SelectedIndexChanged" AutoPostBack="true" CssClass="form-select" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlOrificios" OnDataBound="ddlOrificios_DataBound" OnSelectedIndexChanged="ddlOrificios_SelectedIndexChanged" AutoPostBack="true" CssClass="form-select" runat="server"></asp:DropDownList>
                 <hr />
                 <br />
                 <asp:Label Style="color: green;" Text="" ID="lblStockDisponible" runat="server" />
                 <br />
 
-                <%if (idColor != 0)
+                <%if (idOrificios != 0)
                     {%>
                 <a href="Carrito.aspx?id=<% = prod.Id %>&IdColor=<% = colorSeleccionado.Id%>">
                     <button class="btn btn-outline-secondary" type="button" style="text-align: center">

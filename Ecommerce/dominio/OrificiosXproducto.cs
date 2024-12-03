@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    public class ColoresXproducto
+    public class OrificiosXproducto
     {
         public Producto Producto { get; set; }
-        public Color Color { get; set; }
+        public Orificios Orificios { get; set; }
         public int Stock { get; set; }
     }
 }

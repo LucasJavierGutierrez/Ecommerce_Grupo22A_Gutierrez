@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 namespace Administracion_web
 {
     
-    public partial class modificaMarca : System.Web.UI.Page
+    public partial class modificaMaterial : System.Web.UI.Page
     {
 
 
@@ -21,9 +21,9 @@ namespace Administracion_web
 
             if (Request.QueryString["Id"] != null && !IsPostBack)
             {
-                marcaNegocio negocioMarca = new marcaNegocio();
+                materialNegocio negocioMaterial = new materialNegocio();
                 int idSeleccionado = int.Parse(Request.QueryString["Id"]);
-                Marca marca = (negocioMarca.listar()).Find(x => x.Id == idSeleccionado);
+                Material marca = (negocioMaterial.listar()).Find(x => x.Id == idSeleccionado);
                 txtNombre.Text = marca.Nombre;
             }
             
@@ -36,9 +36,9 @@ namespace Administracion_web
         protected void btnSiguiente_Click(object sender, EventArgs e)
         {
             
-            Marca nuevo = new Marca();
+            Material nuevo = new Material();
             nuevo.Nombre = txtNombre.Text;
-            marcaNegocio negocioMarca = new marcaNegocio();
+            materialNegocio negocioMarca = new materialNegocio();
             if (Request.QueryString["Id"]== null)
             {
                 negocioMarca.agregar(nuevo);

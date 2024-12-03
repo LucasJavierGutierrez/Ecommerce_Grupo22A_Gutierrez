@@ -22,7 +22,7 @@ namespace Administracion_web
             } else
             {
                 productoNegocio productoNegocio = new productoNegocio();
-                ListaProductos = productoNegocio.listarCelusXfiltroSearch(txtSearch.Text.ToString());
+                ListaProductos = productoNegocio.listarPlacasXfiltroSearch(txtSearch.Text.ToString());
                 Session.Add("listadoProductos", ListaProductos);
             }
 

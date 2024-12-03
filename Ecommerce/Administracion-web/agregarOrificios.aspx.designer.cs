@@ -11,25 +11,16 @@ namespace Administracion_web
 {
 
 
-    public partial class detalleProducto
+    public partial class agregarOrificios
     {
 
         /// <summary>
-        /// Control ddlOrificios.
+        /// Control dgvOrificios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlOrificios;
-
-        /// <summary>
-        /// Control lblStockDisponible.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStockDisponible;
+        protected global::System.Web.UI.WebControls.GridView dgvOrificios;
     }
 }

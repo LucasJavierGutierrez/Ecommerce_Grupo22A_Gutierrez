@@ -10,7 +10,7 @@ namespace negocio
 {
     public class productoNegocio
     {
-        public List<Producto> listarCelusXfiltroSearch(string nombreProducto)
+        public List<Producto> listarPlacasXfiltroSearch(string nombreProducto)
         {
             List<Producto> lista = new List<Producto>();
             SqlConnection conexion = new SqlConnection();
@@ -20,7 +20,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4, P.PRECIO,P.SISTEMAOPERATIVO,P.TIPODISCO, P.PLACAVIDEO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1 AND T.NOMBRE LIKE 'CELULARES' AND P.NOMBRE LIKE '%" + nombreProducto.ToString() + "%' OR M.NOMBRE LIKE '%" + nombreProducto.ToString() + "%'";
+                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMATERIAL, M.NOMBRE AS NOMBREMATERIAL, P.LADO, P.TIPO_BLOQUEO, P.CANTIDAD_ORIFICIOS, P.DIAMETRO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4, P.PRECIO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MATERIALES M ON M.ID = P.IDMATERIAL WHERE ESTADO=1 AND T.NOMBRE LIKE 'PLACAS' AND P.NOMBRE LIKE '%" + nombreProducto.ToString() + "%' OR M.NOMBRE LIKE '%" + nombreProducto.ToString() + "%'";
 
 
                 comando.Connection = conexion;
@@ -45,20 +45,20 @@ namespace negocio
                         prod.Imagen4 = (string)lector["IMAGEN4"];
                     if (!(lector["PRECIO"] is DBNull))
                         prod.Precio = (decimal)lector["PRECIO"];
-                    if (!(lector["MEMORIAINTERNA"] is DBNull))
-                        prod.MemoriaInterna = (int)lector["MEMORIAINTERNA"];
-                    if (!(lector["MEMORIARAM"] is DBNull))
-                        prod.MemoriaRam = (int)lector["MEMORIARAM"];
-                    if (!(lector["PROCESADOR"] is DBNull))
-                        prod.Procesador = (string)lector["PROCESADOR"];
-                    if (!(lector["TIPODISCO"] is DBNull))
-                        prod.TipoDisco = (string)lector["TIPODISCO"];
+                    if (!(lector["CANTIDAD_ORIFICIOS"] is DBNull))
+                        prod.Cantidad_Orificios = (int)lector["CANTIDAD_ORIFICIOS"];
+                    if (!(lector["DIAMETRO"] is DBNull))
+                        prod.Diametro = (int)lector["DIAMETRO"];
+                    if (!(lector["TIPO_BLOQUEO"] is DBNull))
+                        prod.Tipo_Bloqueo = (string)lector["TIPO_BLOQUEO"];
+                    if (!(lector["LADO"] is DBNull))
+                        prod.Lado = (string)lector["LADO"];
                     if (!(lector["ESTADO"] is DBNull))
                         prod.Estado = (bool)lector["ESTADO"];
 
-                    prod.Marca = new Marca();
-                    prod.Marca.Id = (int)lector["IDMARCA"];
-                    prod.Marca.Nombre = (string)lector["NOMBREMARCA"];
+                    prod.Material = new Material();
+                    prod.Material.Id = (int)lector["IDMATERIAL"];
+                    prod.Material.Nombre = (string)lector["NOMBREMATERIAL"];
 
 
                     prod.Tipo = new Tipo();
@@ -97,12 +97,12 @@ namespace negocio
                 comando.CommandType = System.Data.CommandType.Text;
                 if (id == "")
                 {
-                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4 , P.PRECIO, P.SISTEMAOPERATIVO,P.TIPODISCO, P.PLACAVIDEO,P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1";
+                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMATERIAL, M.NOMBRE AS NOMBREMATERIAL, P.LADO, P.TIPO_BLOQUEO, P.CANTIDAD_ORIFICIOS, P.DIAMETRO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4 , P.PRECIO, P.LADO,P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MATERIALES M ON M.ID = P.IDMATERIAL WHERE ESTADO=1";
 
                 }
                 if (id != "")
                 {
-                    comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4, P.PRECIO,P.SISTEMAOPERATIVO,P.TIPODISCO, P.PLACAVIDEO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1 AND P.ID= " + id.ToString();
+                    comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMATERIAL, M.NOMBRE AS NOMBREMATERIAL, P.LADO, P.TIPO_BLOQUEO, P.CANTIDAD_ORIFICIOS, P.DIAMETRO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4, P.PRECIO,P.LADO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MATERIALES M ON M.ID = P.IDMATERIAL WHERE ESTADO=1 AND P.ID= " + id.ToString();
 
                 }
                 comando.Connection = conexion;
@@ -127,26 +127,21 @@ namespace negocio
                         prod.Imagen4 = (string)lector["IMAGEN4"];
                     if (!(lector["PRECIO"] is DBNull))
                         prod.Precio = (decimal)lector["PRECIO"];
-                    if (!(lector["MEMORIAINTERNA"] is DBNull))
-                        prod.MemoriaInterna = (int)lector["MEMORIAINTERNA"];
-                    if (!(lector["MEMORIARAM"] is DBNull))
-                        prod.MemoriaRam = (int)lector["MEMORIARAM"];
-                    if (!(lector["PROCESADOR"] is DBNull))
-                        prod.Procesador = (string)lector["PROCESADOR"];
-                    if (!(lector["TIPODISCO"] is DBNull))
-                        prod.TipoDisco = (string)lector["TIPODISCO"];
-                    if (!(lector["SISTEMAOPERATIVO"] is DBNull))
-                        prod.SistemaOperativo = (string)lector["SISTEMAOPERATIVO"];
-                    if (!(lector["TIPODISCO"] is DBNull))
-                        prod.TipoDisco = (string)lector["TIPODISCO"];
-                    if (!(lector["PLACAVIDEO"] is DBNull))
-                        prod.PlacaVideo = (string)lector["PLACAVIDEO"];
+                    if (!(lector["CANTIDAD_ORIFICIOS"] is DBNull))
+                        prod.Cantidad_Orificios = (int)lector["CANTIDAD_ORIFICIOS"];
+                    if (!(lector["DIAMETRO"] is DBNull))
+                        prod.Diametro = (int)lector["DIAMETRO"];
+                    if (!(lector["TIPO_BLOQUEO"] is DBNull))
+                        prod.Tipo_Bloqueo = (string)lector["TIPO_BLOQUEO"];
+                    if (!(lector["LADO"] is DBNull))
+                        prod.Lado = (string)lector["LADO"];
+
                     if (!(lector["ESTADO"] is DBNull))
                         prod.Estado = (bool)lector["ESTADO"];
 
-                    prod.Marca = new Marca();
-                    prod.Marca.Id = (int)lector["IDMARCA"];
-                    prod.Marca.Nombre = (string)lector["NOMBREMARCA"];
+                    prod.Material = new Material();
+                    prod.Material.Id = (int)lector["IDMATERIAL"];
+                    prod.Material.Nombre = (string)lector["NOMBREMATERIAL"];
 
 
                     prod.Tipo = new Tipo();
@@ -186,7 +181,7 @@ namespace negocio
                 comando.CommandType = System.Data.CommandType.Text;
                 if (nombreProducto != "")
                 {
-                    comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4, P.PRECIO,P.SISTEMAOPERATIVO,P.TIPODISCO, P.PLACAVIDEO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1 AND P.NOMBRE LIKE '%" + nombreProducto.ToString()+ "%' OR M.NOMBRE LIKE '%" + nombreProducto.ToString() + "%'";
+                    comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO,T.NOMBRE AS NOMBRETIPO, M.ID AS IDMATERIAL, M.NOMBRE AS NOMBREMATERIAL, P.TIPO_BLOQUEO, P.CANTIDAD_ORIFICIOS, P.DIAMETRO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4, P.PRECIO,P.LADO,  P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MATERIALES M ON M.ID = P.IDMATERIAL WHERE ESTADO=1 AND P.NOMBRE LIKE '%" + nombreProducto.ToString()+ "%' OR M.NOMBRE LIKE '%" + nombreProducto.ToString() + "%'";
 
                 }
                 comando.Connection = conexion;
@@ -211,26 +206,20 @@ namespace negocio
                         prod.Imagen4 = (string)lector["IMAGEN4"];
                     if (!(lector["PRECIO"] is DBNull))
                         prod.Precio = (decimal)lector["PRECIO"];
-                    if (!(lector["MEMORIAINTERNA"] is DBNull))
-                        prod.MemoriaInterna = (int)lector["MEMORIAINTERNA"];
-                    if (!(lector["MEMORIARAM"] is DBNull))
-                        prod.MemoriaRam = (int)lector["MEMORIARAM"];
-                    if (!(lector["PROCESADOR"] is DBNull))
-                        prod.Procesador = (string)lector["PROCESADOR"];
-                    if (!(lector["TIPODISCO"] is DBNull))
-                        prod.TipoDisco = (string)lector["TIPODISCO"];
-                    if (!(lector["SISTEMAOPERATIVO"] is DBNull))
-                        prod.SistemaOperativo = (string)lector["SISTEMAOPERATIVO"];
-                    if (!(lector["TIPODISCO"] is DBNull))
-                        prod.TipoDisco = (string)lector["TIPODISCO"];
-                    if (!(lector["PLACAVIDEO"] is DBNull))
-                        prod.PlacaVideo = (string)lector["PLACAVIDEO"];
+                    if (!(lector["CANTIDAD_ORIFICIOS"] is DBNull))
+                        prod.Cantidad_Orificios = (int)lector["CANTIDAD_ORIFICIOS"];
+                    if (!(lector["DIAMETRO"] is DBNull))
+                        prod.Diametro = (int)lector["DIAMETRO"];
+                    if (!(lector["TIPO_BLOQUEO"] is DBNull))
+                        prod.Tipo_Bloqueo = (string)lector["TIPO_BLOQUEO"];
+                    if (!(lector["LADO"] is DBNull))
+                        prod.Lado = (string)lector["LADO"];
                     if (!(lector["ESTADO"] is DBNull))
                         prod.Estado = (bool)lector["ESTADO"];
 
-                    prod.Marca = new Marca();
-                    prod.Marca.Id = (int)lector["IDMARCA"];
-                    prod.Marca.Nombre = (string)lector["NOMBREMARCA"];
+                    prod.Material = new Material();
+                    prod.Material.Id = (int)lector["IDMATERIAL"];
+                    prod.Material.Nombre = (string)lector["NOMBREMATERIAL"];
 
 
                     prod.Tipo = new Tipo();
@@ -268,7 +257,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4 , P.PRECIO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1 ";
+                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMATERIAL, M.NOMBRE AS NOMBREMATERIAL, P.TIPO_BLOQUEO, P.CANTIDAD_ORIFICIOS, P.DIAMETRO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4, P.PRECIO,P.LADO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MATERIALES M ON M.ID = P.IDMATERIAL WHERE ESTADO=1 ";
 
                 switch (tipoFiltro)
                 {
@@ -308,20 +297,20 @@ namespace negocio
                         prod.Imagen4 = (string)lector["IMAGEN4"];
                     if (!(lector["PRECIO"] is DBNull))
                         prod.Precio = (decimal)lector["PRECIO"];
-                    if (!(lector["MEMORIAINTERNA"] is DBNull))
-                        prod.MemoriaInterna = (int)lector["MEMORIAINTERNA"];
-                    if (!(lector["MEMORIARAM"] is DBNull))
-                        prod.MemoriaRam = (int)lector["MEMORIARAM"];
-                    if (!(lector["PROCESADOR"] is DBNull))
-                        prod.Procesador = (string)lector["PROCESADOR"];
-                    if (!(lector["TIPODISCO"] is DBNull))
-                        prod.TipoDisco = (string)lector["TIPODISCO"];
+                    if (!(lector["CANTIDAD_ORIFICIOS"] is DBNull))
+                        prod.Cantidad_Orificios = (int)lector["CANTIDAD_ORIFICIOS"];
+                    if (!(lector["DIAMETRO"] is DBNull))
+                        prod.Diametro = (int)lector["DIAMETRO"];
+                    if (!(lector["TIPO_BLOQUEO"] is DBNull))
+                        prod.Tipo_Bloqueo = (string)lector["TIPO_BLOQUEO"];
+                    if (!(lector["LADO"] is DBNull))
+                        prod.Lado = (string)lector["LADO"];
                     if (!(lector["ESTADO"] is DBNull))
                         prod.Estado = (bool)lector["ESTADO"];
 
-                    prod.Marca = new Marca();
-                    prod.Marca.Id = (int)lector["IDMARCA"];
-                    prod.Marca.Nombre = (string)lector["NOMBREMARCA"];
+                    prod.Material = new Material();
+                    prod.Material.Id = (int)lector["IDMATERIAL"];
+                    prod.Material.Nombre = (string)lector["NOMBREMATERIAL"];
 
 
                     prod.Tipo = new Tipo();
@@ -359,7 +348,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT TOP 1 P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.SISTEMAOPERATIVO,P.PLACAVIDEO, P.IMAGEN1,P.IMAGEN2, P.IMAGEN3,P.IMAGEN4, P.PRECIO  FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA ORDER BY P.ID desc";
+                comando.CommandText = "SELECT TOP 1 P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE NOMBRETIPO, M.ID AS IDMATERIAL, M.NOMBRE NOMBREMATERIAL, P.TIPO_BLOQUEO, P.CANTIDAD_ORIFICIOS, P.DIAMETRO, P.LADO, P.IMAGEN1,P.IMAGEN2, P.IMAGEN3,P.IMAGEN4, P.PRECIO  FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MATERIALES M ON M.ID = P.IDMATERIAL ORDER BY P.ID desc";
                 comando.Connection = conexion;
                 conexion.Open();
 
@@ -382,19 +371,19 @@ namespace negocio
                         prod.Imagen4 = (string)lector["IMAGEN4"];
                     if (!(lector["PRECIO"] is DBNull))
                         prod.Precio = (decimal)lector["PRECIO"];
-                    if (!(lector["MEMORIAINTERNA"] is DBNull))
-                        prod.MemoriaInterna = (int)lector["MEMORIAINTERNA"];
-                    if (!(lector["MEMORIARAM"] is DBNull))
-                        prod.MemoriaRam = (int)lector["MEMORIARAM"];
-                    if (!(lector["PROCESADOR"] is DBNull))
-                        prod.Procesador = (string)lector["PROCESADOR"];
-                    if (!(lector["TIPODISCO"] is DBNull))
-                        prod.TipoDisco = (string)lector["TIPODISCO"];
+                    if (!(lector["CANTIDAD_ORIFICIOS"] is DBNull))
+                        prod.Cantidad_Orificios = (int)lector["CANTIDAD_ORIFICIOS"];
+                    if (!(lector["DIAMETRO"] is DBNull))
+                        prod.Diametro = (int)lector["DIAMETRO"];
+                    if (!(lector["TIPO_BLOQUEO"] is DBNull))
+                        prod.Tipo_Bloqueo = (string)lector["TIPO_BLOQUEO"];
+                    if (!(lector["LADO"] is DBNull))
+                        prod.Lado = (string)lector["LADO"];
        
 
-                    prod.Marca = new Marca();
-                    prod.Marca.Id = (int)lector["IDMARCA"];
-                    prod.Marca.Nombre = (string)lector["NOMBREMARCA"];
+                    prod.Material = new Material();
+                    prod.Material.Id = (int)lector["IDMATERIAL"];
+                    prod.Material.Nombre = (string)lector["NOMBREMATERIAL"];
 
 
                     prod.Tipo = new Tipo();
@@ -431,13 +420,11 @@ namespace negocio
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@Tipo", nuevo.Tipo.Id);
-                datos.setearParametro("@Marca", nuevo.Marca.Id);
-                datos.setearParametro("@MemoriaInterna", nuevo.MemoriaInterna);
-                datos.setearParametro("@MemoriaRam", nuevo.MemoriaRam);
-                datos.setearParametro("@Procesador", nuevo.Procesador);
-                datos.setearParametro("@Disco", nuevo.TipoDisco);
-                datos.setearParametro("@SistemaOperativo", nuevo.SistemaOperativo);
-                datos.setearParametro("@PlacaVideo", nuevo.PlacaVideo);
+                datos.setearParametro("@Material", nuevo.Material.Id);
+                datos.setearParametro("@Cantidad_Orificios", nuevo.Cantidad_Orificios);
+                datos.setearParametro("@Diametro", nuevo.Diametro);
+                datos.setearParametro("@Tipo_Bloqueo", nuevo.Tipo_Bloqueo);
+                datos.setearParametro("@lado", nuevo.Lado);
                 datos.setearParametro("@Imagen1", nuevo.Imagen1);
                 datos.setearParametro("@Imagen2", nuevo.Imagen2);
                 datos.setearParametro("@Imagen3", nuevo.Imagen3);
@@ -466,11 +453,11 @@ namespace negocio
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@Tipo", nuevo.Tipo.Id);
-                datos.setearParametro("@Marca", nuevo.Marca.Id);
-                datos.setearParametro("@MemoriaInterna", nuevo.MemoriaInterna);
-                datos.setearParametro("@MemoriaRam", nuevo.MemoriaRam);
-                datos.setearParametro("@Procesador", nuevo.Procesador);
-                datos.setearParametro("@Disco", nuevo.TipoDisco);
+                datos.setearParametro("@Material", nuevo.Material.Id);
+                datos.setearParametro("@Cantidad_Orificios", nuevo.Cantidad_Orificios);
+                datos.setearParametro("@Diametro", nuevo.Diametro);
+                datos.setearParametro("@Tipo_Bloqueo", nuevo.Tipo_Bloqueo);
+                datos.setearParametro("@Lado", nuevo.Lado);
                 datos.setearParametro("@Imagen1", nuevo.Imagen1);
                 datos.setearParametro("@Imagen2", nuevo.Imagen2);
                 datos.setearParametro("@Imagen3", nuevo.Imagen3);
@@ -528,7 +515,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMARCA, M.NOMBRE AS NOMBREMARCA, P.MEMORIAINTERNA, P.MEMORIARAM, P.PROCESADOR, P.TIPODISCO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4 , P.PRECIO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MARCAS M ON M.ID = P.IDMARCA WHERE ESTADO=1 AND T.NOMBRE = 'PC' OR T.NOMBRE ='Notebook' ";
+                comando.CommandText = "SELECT P.ID, P.NOMBRE, P.DESCRIPCION, T.ID AS IDTIPO, T.NOMBRE AS NOMBRETIPO, M.ID AS IDMATERIAL, M.NOMBRE AS NOMBREMATERIAL, P.TIPO_BLOQUEO, P.CANTIDAD_ORIFICIOS, P.DIAMETRO, P.LADO, P.IMAGEN1,P.IMAGEN2,P.IMAGEN3,P.IMAGEN4 , P.PRECIO, P.ESTADO FROM PRODUCTOS P INNER JOIN TIPOS T ON T.ID= P.IDTIPO INNER JOIN MATERIALES M ON M.ID = P.IDMATERIAL WHERE ESTADO=1 AND T.NOMBRE = 'PLACAS' OR T.NOMBRE ='PLACA' ";
 
                 switch (tipoFiltro)
                 {
@@ -568,20 +555,20 @@ namespace negocio
                         prod.Imagen4 = (string)lector["IMAGEN4"];
                     if (!(lector["PRECIO"] is DBNull))
                         prod.Precio = (decimal)lector["PRECIO"];
-                    if (!(lector["MEMORIAINTERNA"] is DBNull))
-                        prod.MemoriaInterna = (int)lector["MEMORIAINTERNA"];
-                    if (!(lector["MEMORIARAM"] is DBNull))
-                        prod.MemoriaRam = (int)lector["MEMORIARAM"];
-                    if (!(lector["PROCESADOR"] is DBNull))
-                        prod.Procesador = (string)lector["PROCESADOR"];
-                    if (!(lector["TIPODISCO"] is DBNull))
-                        prod.TipoDisco = (string)lector["TIPODISCO"];
+                    if (!(lector["CANTIDAD_ORIFICIOS"] is DBNull))
+                        prod.Cantidad_Orificios = (int)lector["CANTIDAD_ORIFICIOS"];
+                    if (!(lector["DIAMETRO"] is DBNull))
+                        prod.Diametro = (int)lector["DIAMETRO"];
+                    if (!(lector["TIPO_BLOQUEO"] is DBNull))
+                        prod.Tipo_Bloqueo = (string)lector["TIPO_BLOQUEO"];
+                    if (!(lector["LADO"] is DBNull))
+                        prod.Lado = (string)lector["LADO"];
                     if (!(lector["ESTADO"] is DBNull))
                         prod.Estado = (bool)lector["ESTADO"];
 
-                    prod.Marca = new Marca();
-                    prod.Marca.Id = (int)lector["IDMARCA"];
-                    prod.Marca.Nombre = (string)lector["NOMBREMARCA"];
+                    prod.Material = new Material();
+                    prod.Material.Id = (int)lector["IDMATERIAL"];
+                    prod.Material.Nombre = (string)lector["NOMBREMATERIAL"];
 
 
                     prod.Tipo = new Tipo();
@@ -609,6 +596,11 @@ namespace negocio
             }
         }
 
+
+      
+        /// HASTAA ACAAAAAAAAAAA
+     
+     
         public List<Producto> listarCompusXFiltro(string producto)
         {
             List<Producto> lista = new List<Producto>();
@@ -645,19 +637,19 @@ namespace negocio
                     if (!(lector["PRECIO"] is DBNull))
                         prod.Precio = (decimal)lector["PRECIO"];
                     if (!(lector["MEMORIAINTERNA"] is DBNull))
-                        prod.MemoriaInterna = (int)lector["MEMORIAINTERNA"];
+                        prod.Cantidad_Orificios = (int)lector["MEMORIAINTERNA"];
                     if (!(lector["MEMORIARAM"] is DBNull))
-                        prod.MemoriaRam = (int)lector["MEMORIARAM"];
+                        prod.Diametro = (int)lector["MEMORIARAM"];
                     if (!(lector["PROCESADOR"] is DBNull))
-                        prod.Procesador = (string)lector["PROCESADOR"];
+                        prod.Tipo_Bloqueo = (string)lector["PROCESADOR"];
                     if (!(lector["TIPODISCO"] is DBNull))
-                        prod.TipoDisco = (string)lector["TIPODISCO"];
+                        prod.Lado = (string)lector["TIPODISCO"];
                     if (!(lector["ESTADO"] is DBNull))
                         prod.Estado = (bool)lector["ESTADO"];
 
-                    prod.Marca = new Marca();
-                    prod.Marca.Id = (int)lector["IDMARCA"];
-                    prod.Marca.Nombre = (string)lector["NOMBREMARCA"];
+                    prod.Material = new Material();
+                    prod.Material.Id = (int)lector["IDMARCA"];
+                    prod.Material.Nombre = (string)lector["NOMBREMARCA"];
 
 
                     prod.Tipo = new Tipo();
@@ -727,19 +719,19 @@ namespace negocio
                     if (!(lector["PRECIO"] is DBNull))
                         prod.Precio = (decimal)lector["PRECIO"];
                     if (!(lector["MEMORIAINTERNA"] is DBNull))
-                        prod.MemoriaInterna = (int)lector["MEMORIAINTERNA"];
+                        prod.Cantidad_Orificios = (int)lector["MEMORIAINTERNA"];
                     if (!(lector["MEMORIARAM"] is DBNull))
-                        prod.MemoriaRam = (int)lector["MEMORIARAM"];
+                        prod.Diametro = (int)lector["MEMORIARAM"];
                     if (!(lector["PROCESADOR"] is DBNull))
-                        prod.Procesador = (string)lector["PROCESADOR"];
+                        prod.Tipo_Bloqueo = (string)lector["PROCESADOR"];
                     if (!(lector["TIPODISCO"] is DBNull))
-                        prod.TipoDisco = (string)lector["TIPODISCO"];
+                        prod.Lado = (string)lector["TIPODISCO"];
                     if (!(lector["ESTADO"] is DBNull))
                         prod.Estado = (bool)lector["ESTADO"];
 
-                    prod.Marca = new Marca();
-                    prod.Marca.Id = (int)lector["IDMARCA"];
-                    prod.Marca.Nombre = (string)lector["NOMBREMARCA"];
+                    prod.Material = new Material();
+                    prod.Material.Id = (int)lector["IDMARCA"];
+                    prod.Material.Nombre = (string)lector["NOMBREMARCA"];
 
 
                     prod.Tipo = new Tipo();
@@ -810,19 +802,19 @@ namespace negocio
                     if (!(lector["PRECIO"] is DBNull))
                         prod.Precio = (decimal)lector["PRECIO"];
                     if (!(lector["MEMORIAINTERNA"] is DBNull))
-                        prod.MemoriaInterna = (int)lector["MEMORIAINTERNA"];
+                        prod.Cantidad_Orificios = (int)lector["MEMORIAINTERNA"];
                     if (!(lector["MEMORIARAM"] is DBNull))
-                        prod.MemoriaRam = (int)lector["MEMORIARAM"];
+                        prod.Diametro = (int)lector["MEMORIARAM"];
                     if (!(lector["PROCESADOR"] is DBNull))
-                        prod.Procesador = (string)lector["PROCESADOR"];
+                        prod.Tipo_Bloqueo = (string)lector["PROCESADOR"];
                     if (!(lector["TIPODISCO"] is DBNull))
-                        prod.TipoDisco = (string)lector["TIPODISCO"];
+                        prod.Lado = (string)lector["TIPODISCO"];
                     if (!(lector["ESTADO"] is DBNull))
                         prod.Estado = (bool)lector["ESTADO"];
 
-                    prod.Marca = new Marca();
-                    prod.Marca.Id = (int)lector["IDMARCA"];
-                    prod.Marca.Nombre = (string)lector["NOMBREMARCA"];
+                    prod.Material = new Material();
+                    prod.Material.Id = (int)lector["IDMARCA"];
+                    prod.Material.Nombre = (string)lector["NOMBREMARCA"];
 
 
                     prod.Tipo = new Tipo();
@@ -901,19 +893,19 @@ namespace negocio
                     if (!(lector["PRECIO"] is DBNull))
                         prod.Precio = (decimal)lector["PRECIO"];
                     if (!(lector["MEMORIAINTERNA"] is DBNull))
-                        prod.MemoriaInterna = (int)lector["MEMORIAINTERNA"];
+                        prod.Cantidad_Orificios = (int)lector["MEMORIAINTERNA"];
                     if (!(lector["MEMORIARAM"] is DBNull))
-                        prod.MemoriaRam = (int)lector["MEMORIARAM"];
+                        prod.Diametro = (int)lector["MEMORIARAM"];
                     if (!(lector["PROCESADOR"] is DBNull))
-                        prod.Procesador = (string)lector["PROCESADOR"];
+                        prod.Tipo_Bloqueo = (string)lector["PROCESADOR"];
                     if (!(lector["TIPODISCO"] is DBNull))
-                        prod.TipoDisco = (string)lector["TIPODISCO"];
+                        prod.Lado = (string)lector["TIPODISCO"];
                     if (!(lector["ESTADO"] is DBNull))
                         prod.Estado = (bool)lector["ESTADO"];
 
-                    prod.Marca = new Marca();
-                    prod.Marca.Id = (int)lector["IDMARCA"];
-                    prod.Marca.Nombre = (string)lector["NOMBREMARCA"];
+                    prod.Material = new Material();
+                    prod.Material.Id = (int)lector["IDMARCA"];
+                    prod.Material.Nombre = (string)lector["NOMBREMARCA"];
 
 
                     prod.Tipo = new Tipo();

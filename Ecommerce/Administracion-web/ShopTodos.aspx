@@ -52,7 +52,7 @@
             <div class="card h-100" style="width: 18rem;">
                 <img src="<% = item.Imagen1 %>" class="card-img-top img-fluid" alt="..." onerror="this.src='https://assets.cdn-shop.com/mi-arte3-es/assets/img/backgrounds/placeholder-8b83e412a5.svg';">
                 <div class="card-body card-heigth-xs">
-                    <h5 class="card-title"><% = item.Marca.Nombre %></h5>
+                    <h5 class="card-title"><% = item.Material.Nombre %></h5>
                     <h5 class="card-title"><% = item.Nombre %></h5>
                     <p style="color: grey;" class="card-text"><%= item.Precio %></p>
                     <a href="detalleProducto.aspx?id=<% = item.Id %>" class="btn btn-primary">

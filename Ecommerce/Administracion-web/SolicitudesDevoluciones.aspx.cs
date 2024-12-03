@@ -30,9 +30,9 @@ namespace Administracion_web
                 int idSeleccionado = int.Parse(dgvSolicitudesDeDevolucion.DataKeys[index]["Id"].ToString());
                 SolicitudDevolucionNegocio negocio = new SolicitudDevolucionNegocio();
                 SolicitudDevolucion solicitud = negocio.listaSolicitudes().Find(x => x.Id == idSeleccionado);
-                negocio.sumoStock(solicitud.producto.Id, solicitud.color.Id, solicitud.cantidad);
+                negocio.sumoStock(solicitud.producto.Id, solicitud.Orificios.Id, solicitud.cantidad);
                 negocio.DevolucionAceptada(idSeleccionado);
-                negocio.ActualizaTablaCompra(solicitud.IdVenta, solicitud.producto.Id, solicitud.color.Id, solicitud.cantidad);
+                negocio.ActualizaTablaCompra(solicitud.IdVenta, solicitud.producto.Id, solicitud.Orificios.Id, solicitud.cantidad);
                
 
                 Response.Redirect("misCompras.aspx", false);

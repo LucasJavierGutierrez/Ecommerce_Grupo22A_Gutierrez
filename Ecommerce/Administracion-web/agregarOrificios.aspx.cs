@@ -12,7 +12,7 @@ namespace Administracion_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            colorNegocio negocio = new colorNegocio();
+            OrificiosNegocio negocio = new OrificiosNegocio();
             dgvColores.DataSource = negocio.listarTodos();
             dgvColores.DataBind();
 

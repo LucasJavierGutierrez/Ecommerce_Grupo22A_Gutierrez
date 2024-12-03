@@ -46,8 +46,8 @@ namespace Administracion_web
                     int idSeleccionado = int.Parse(Session["idCategoriaEliminar"].ToString());
     
 
-                    ColoresXproductoNegocio negocio = new ColoresXproductoNegocio();
-                    List<ColoresXproducto> lista = negocio.listarL();
+                    OrificiosXproductoNegocio negocio = new OrificiosXproductoNegocio();
+                    List<OrificiosXproducto> lista = negocio.listarL();
 
                     foreach (var item in lista)
                     {

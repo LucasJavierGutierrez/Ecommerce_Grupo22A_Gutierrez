@@ -11,7 +11,7 @@ namespace Administracion_web
 {
 
 
-    public partial class modificaMarca
+    public partial class modificaMaterial
     {
 
         /// <summary>

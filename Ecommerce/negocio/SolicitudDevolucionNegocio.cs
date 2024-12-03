@@ -44,7 +44,7 @@ namespace negocio
 
                 datos.setearParametro("@IdVenta", solicitud.IdVenta);
                 datos.setearParametro("@IdProducto", solicitud.producto.Id);
-                datos.setearParametro("@IdColor", solicitud.color.Id);
+                datos.setearParametro("@IdOrificios", solicitud.Orificios.Id);
                 datos.setearParametro("@IdUsuario", solicitud.usuario.Id);
                 datos.setearParametro("@Motivo", solicitud.motivo);
                 datos.setearParametro("@Cantidad", solicitud.cantidad);
@@ -73,7 +73,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT DEV.ID as IDPEDIDO, DEV.IDVENTA,U.ID AS IDUSUARIO, U.NOMBRE AS NOMBREUSUARIO,U.APELLIDO as APELLIDOUSUARIO,U.EMAIL AS EMAILUSUARIO,PR.ID AS IDPRODUCTO, PR.NOMBRE AS NOMBREPRODUCTO,C.ID AS IDCOLOR, C.NOMBRE AS NOMBRECOLOR, DEV.MOTIVO, DEV.CANTIDAD FROM DEVOLUCIONES DEV INNER JOIN PRODUCTOS PR ON PR.ID=DEV.IDPRODUCTO INNER JOIN COLORES C ON C.ID=DEV.IDCOLOR INNER JOIN USUARIOS U ON U.ID=DEV.IDUSUARIO WHERE DEVUELTO = 0";
+                comando.CommandText = "SELECT DEV.ID as IDPEDIDO, DEV.IDVENTA,U.ID AS IDUSUARIO, U.NOMBRE AS NOMBREUSUARIO,U.APELLIDO as APELLIDOUSUARIO,U.EMAIL AS EMAILUSUARIO,PR.ID AS IDPRODUCTO, PR.NOMBRE AS NOMBREPRODUCTO,C.ID AS IDORIFICIOS, C.NOMBRE AS ORIFICIOS, DEV.MOTIVO, DEV.CANTIDAD FROM DEVOLUCIONES DEV INNER JOIN PRODUCTOS PR ON PR.ID=DEV.IDPRODUCTO INNER JOIN ORIFICIOS C ON C.ID=DEV.IDORIFICIOS INNER JOIN USUARIOS U ON U.ID=DEV.IDUSUARIO WHERE DEVUELTO = 0";
 
 
                 comando.Connection = conexion;
@@ -90,9 +90,9 @@ namespace negocio
                     sd.producto.Id = (int)lector["IDPRODUCTO"];
                     sd.producto.Nombre = (string)lector["NOMBREPRODUCTO"];
 
-                    sd.color = new Color();
-                    sd.color.Id = (int)lector["IDCOLOR"];
-                    sd.color.Nombre = (string)lector["NOMBRECOLOR"];
+                    sd.Orificios = new Orificios();
+                    sd.Orificios.Id = (int)lector["IDORIFICIOS"];
+                    sd.Orificios.Nombre = (string)lector["ORIFICIOS"];
 
                     sd.usuario = new Usuario();
                     sd.usuario.Id = (int)lector["IDUSUARIO"];
@@ -123,7 +123,7 @@ namespace negocio
             }
         }
 
-        public void ActualizaTablaCompra(int IdVenta, int IdProducto, int IdColor, int cantidad)
+        public void ActualizaTablaCompra(int IdVenta, int IdProducto, int IdOrificios, int cantidad)
         {
             AccesoDatos datos = new AccesoDatos();
             try
@@ -131,7 +131,7 @@ namespace negocio
                 datos.setearProcedimiento("SP_ACTUALIZARCOMPRA");
                 datos.setearParametro("@IdVenta", IdVenta);
                 datos.setearParametro("@IdProducto", IdProducto);
-                datos.setearParametro("@IdColor", IdColor);
+                datos.setearParametro("@IdOrificios", IdOrificios);
                 datos.setearParametro("@Cantidad", cantidad);
 
 
@@ -170,14 +170,14 @@ namespace negocio
             }
         }
 
-        public void sumoStock(int idProducto, int idColor, int cantidad)
+        public void sumoStock(int idProducto, int idOrificios, int cantidad)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearProcedimiento("SP_SumoStock");
                 datos.setearParametro("@idProducto", idProducto);
-                datos.setearParametro("@idColor", idColor);
+                datos.setearParametro("@idOrificios", idOrificios);
                 datos.setearParametro("@cantidadDevuelto", cantidad);
 
 

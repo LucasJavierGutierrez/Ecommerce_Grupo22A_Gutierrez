@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace negocio
 {
-    public class marcaNegocio
+    public class materialNegocio
     {
-        public List<Marca> listar()
+        public List<Material> listar()
         {
-            List<Marca> lista = new List<Marca>();
+            List<Material> lista = new List<Material>();
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
@@ -20,20 +20,20 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT ID, NOMBRE FROM MARCAS";
+                comando.CommandText = "SELECT ID, NOMBRE FROM MATERIALES";
                 comando.Connection = conexion;
                 conexion.Open();
 
                 lector = comando.ExecuteReader();
                 while (lector.Read())
                 {
-                    Marca marca = new Marca();
-                    marca.Id = (int)lector["ID"];
+                    Material material = new Material();
+                    material.Id = (int)lector["ID"];
                     if (!(lector["NOMBRE"] is DBNull))
-                        marca.Nombre = (string)lector["NOMBRE"];
+                        material.Nombre = (string)lector["NOMBRE"];
 
 
-                    lista.Add(marca);
+                    lista.Add(material);
                 }
 
                 //conexion.Close();
@@ -51,14 +51,14 @@ namespace negocio
 
         }
 
-        public void agregar(Marca nuevo)
+        public void agregar(Material nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 string valores = "values('" + nuevo.Nombre + "')";
 
-                datos.setearConsulta("insert into Marcas (Nombre) " + valores);
+                datos.setearConsulta("insert into Materiales (Nombre) " + valores);
 
                 datos.ejectutarAccion();
 
@@ -72,12 +72,12 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public void ModificarSP(int id, Marca nueva)
+        public void ModificarSP(int id, Material nueva)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearProcedimiento("SP_MODIFICAMARCA");
+                datos.setearProcedimiento("SP_MODIFICAMATERIAL");
                 datos.setearParametro("@Id", id);
                 datos.setearParametro("@Nombre", nueva.Nombre);
 
@@ -101,7 +101,7 @@ namespace negocio
             try
             {
                 Producto aux = new Producto();
-                datos.setearProcedimiento("SP_EliminaMarca");
+                datos.setearProcedimiento("SP_EliminaMaterial");
                 datos.setearParametro("@Id", ID);
 
                 datos.ejectutarAccion();

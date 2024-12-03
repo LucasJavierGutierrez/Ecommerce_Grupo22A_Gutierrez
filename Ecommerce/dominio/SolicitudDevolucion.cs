@@ -16,7 +16,7 @@ namespace dominio
         public int Id { get; set; }
         public int IdVenta { get; set; }
         public Producto producto { get; set; }
-        public Color color { get; set; }
+        public Orificios Orificios { get; set; }
         public int cantidad { get; set; }
         public Usuario usuario { get; set; }
         public string motivo { get; set; }

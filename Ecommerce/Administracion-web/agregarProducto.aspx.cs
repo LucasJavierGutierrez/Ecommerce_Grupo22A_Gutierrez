@@ -25,8 +25,8 @@ namespace Administracion_web
                 ddlTipo.DataValueField = "ID";
                 ddlTipo.DataBind();
 
-                marcaNegocio negocioMarca = new marcaNegocio();
-                ddlMarca.DataSource = negocioMarca.listar();
+                materialNegocio negocioMaterial = new materialNegocio();
+                ddlMarca.DataSource = negocioMaterial.listar();
                 ddlMarca.DataTextField = "NOMBRE";
                 ddlMarca.DataValueField = "ID";
                 ddlMarca.DataBind();
@@ -41,15 +41,15 @@ namespace Administracion_web
                 txtNombre.Text = seleccionado.Nombre;
                 txtDescripcion.Text = seleccionado.Descripcion;
                 txtPrecio.Text = seleccionado.Precio.ToString();
-                txtMemoriaInterna.Text = seleccionado.MemoriaInterna.ToString();
-                txtMemoriaRam.Text = seleccionado.MemoriaRam.ToString();
-                txtProcesador.Text = seleccionado.Procesador;
+                txtMemoriaInterna.Text = seleccionado.Cantidad_Orificios.ToString();
+                txtMemoriaRam.Text = seleccionado.Diametro.ToString();
+                txtProcesador.Text = seleccionado.Tipo_Bloqueo;
                 txtImagenURL1.Text = seleccionado.Imagen1;
                 txtImagenURL2.Text = seleccionado.Imagen2;
                 txtImagenURL3.Text = seleccionado.Imagen3;
                 txtImagenURL4.Text = seleccionado.Imagen4;
 
-                ddlMarca.SelectedValue = seleccionado.Marca.Id.ToString();
+                ddlMarca.SelectedValue = seleccionado.Material.Id.ToString();
                 ddlTipo.SelectedValue = seleccionado.Tipo.Id.ToString();
 
 
@@ -67,7 +67,7 @@ namespace Administracion_web
 
         }
 
-        protected void dgvColores_SelectedIndexChanged(object sender, EventArgs e)
+        protected void dgvOrificios_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -80,25 +80,24 @@ namespace Administracion_web
                 Producto nuevo = new Producto();
                 nuevo.Nombre = txtNombre.Text;
                 nuevo.Descripcion = txtDescripcion.Text;
-                nuevo.Marca = new Marca();
-                nuevo.Marca.Id = int.Parse(ddlMarca.SelectedValue);
+                nuevo.Material = new Material();
+                nuevo.Material.Id = int.Parse(ddlMarca.SelectedValue);
                 nuevo.Tipo = new Tipo();
                 nuevo.Tipo.Id = int.Parse(ddlTipo.SelectedValue);
                 if (txtMemoriaInterna.Text == "" || txtMemoriaRam.Text == "")
                 {
-                    nuevo.MemoriaInterna = null;
-                    nuevo.MemoriaRam = null;
+                    nuevo.Cantidad_Orificios = null;
+                    nuevo.Diametro = 0; ///null;
                 }
                 else
                 {
-                    nuevo.MemoriaInterna = int.Parse(txtMemoriaInterna.Text);
-                    nuevo.MemoriaRam = int.Parse(txtMemoriaRam.Text);
+                    nuevo.Cantidad_Orificios = int.Parse(txtMemoriaInterna.Text);
+                    nuevo.Diametro = int.Parse(txtMemoriaRam.Text);
                 }
 
-                nuevo.Procesador = txtProcesador.Text.ToString();
-                nuevo.TipoDisco = txtDisco.Text.ToString();
-                nuevo.SistemaOperativo = txtSistemaOperativo.Text;
-                nuevo.PlacaVideo = txtPlacaVideo.Text;
+                nuevo.Tipo_Bloqueo = txtProcesador.Text.ToString();
+                nuevo.Lado = txtDisco.Text.ToString();
+
                 nuevo.Imagen1 = txtImagenURL1.Text;
                 nuevo.Imagen2 = txtImagenURL2.Text;
                 nuevo.Imagen3 = txtImagenURL3.Text;
@@ -111,7 +110,7 @@ namespace Administracion_web
                     nuevo.Id = int.Parse(Request.QueryString["id"]);
                     negocioProducto.modificarConSP(nuevo);
                     Session.Add("IdProductoAgregado", nuevo.Id); //mando por sesion el id del producto agregado
-                    Response.Redirect("agregarColores.aspx", false); //Lo recibo en pesteña stock... Asi al agregar stock, tengo el numero del id de producto ya que por parametro mando el ID del color seleccionado
+                    Response.Redirect("agregarOrificios.aspx", false); //Lo recibo en pesteña stock... Asi al agregar stock, tengo el numero del id de producto ya que por parametro mando el ID del Orificios seleccionado
 
 
                 }
@@ -121,7 +120,7 @@ namespace Administracion_web
                     negocioProducto.agregar(nuevo);
                     Producto pr = negocioProducto.listaProductoAgregado();
                     Session.Add("IdProductoAgregado", pr.Id); //mando por sesion el id del producto agregado
-                    Response.Redirect("agregarColores.aspx", false); //Lo recibo en pesteña stock... Asi al agregar stock, tengo el numero del id de producto ya que por parametro mando el ID del color seleccionado
+                    Response.Redirect("agregarOrificios.aspx", false); //Lo recibo en pesteña stock... Asi al agregar stock, tengo el numero del id de producto ya que por parametro mando el ID del Orificios seleccionado
 
 
                 }

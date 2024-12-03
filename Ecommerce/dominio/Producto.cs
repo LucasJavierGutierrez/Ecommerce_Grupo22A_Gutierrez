@@ -14,13 +14,14 @@ namespace dominio
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public Tipo Tipo { get; set; }
-        public Marca Marca { get; set; }
-        public int? MemoriaInterna { get; set; }
-        public int? MemoriaRam { get; set; }
-        public string  Procesador { get; set; }
-        public string TipoDisco { get; set; } //HDD O SSD
-        public string SistemaOperativo{ get; set; }
-        public string PlacaVideo { get; set; }
+        public Material Material { get; set; }
+
+        public int? Cantidad_Orificios { get; set; }
+        public decimal Diametro { get; set; }
+        public string  Tipo_Bloqueo { get; set; }
+        public string Lado { get; set; } //
+     
+
         public string Imagen1 { get; set; }
         public string Imagen2 { get; set; }
         public string Imagen3 { get; set; }

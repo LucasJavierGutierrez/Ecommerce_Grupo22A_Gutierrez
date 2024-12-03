@@ -11,8 +11,8 @@ namespace Administracion_web
     public partial class detalleProducto : System.Web.UI.Page
     {
         public Producto prod = new Producto();
-        public Color colorSeleccionado = new Color();
-        public int idColor = 0;
+        public Orificios colorSeleccionado = new Orificios();
+        public int idOrificios = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -23,15 +23,15 @@ namespace Administracion_web
                 int idSeleccionado = int.Parse(Request.QueryString["Id"]);
 
                 prod = list.Find(x => x.Id == idSeleccionado);
-                colorNegocio negocioColor = new colorNegocio();
+                OrificiosNegocio negocioColor = new OrificiosNegocio();
                 if (!IsPostBack)
                 {
                     
-                    List<Color> listColor = negocioColor.listar(idSeleccionado);
-                    ddlColores.DataSource = listColor;
-                    ddlColores.DataValueField = "Id";
-                    ddlColores.DataTextField = "Nombre";
-                    ddlColores.DataBind();
+                    List<Orificios> listColor = negocioColor.listar(idSeleccionado);
+                    ddlOrificios.DataSource = listColor;
+                    ddlOrificios.DataValueField = "Id";
+                    ddlOrificios.DataTextField = "Nombre";
+                    ddlOrificios.DataBind();
 
                 }
             }
@@ -45,22 +45,22 @@ namespace Administracion_web
         }
 
 
-        protected void ddlColores_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlOrificios_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             try
             {
-                colorNegocio negocio = new colorNegocio();
-                List<Color> lista = negocio.listarTodos();
+                OrificiosNegocio negocio = new OrificiosNegocio();
+                List<Orificios> lista = negocio.listarTodos();
 
-                idColor = int.Parse(ddlColores.SelectedItem.Value);
-                colorSeleccionado = lista.Find(x => x.Id == idColor);
-                if (idColor != 0 || idColor != null)
+                idOrificios = int.Parse(ddlOrificios.SelectedItem.Value);
+                colorSeleccionado = lista.Find(x => x.Id == idOrificios);
+                if (idOrificios != 0 || idOrificios != null)
                 {
 
-                    ColoresXproductoNegocio cxpNegocio = new ColoresXproductoNegocio();
-                    List<ColoresXproducto> listacxp = cxpNegocio.listarTodo();
-                    ColoresXproducto cxp = listacxp.Find(x => x.Producto.Id == prod.Id && x.Color.Id == idColor);
+                    OrificiosXproductoNegocio cxpNegocio = new OrificiosXproductoNegocio();
+                    List<OrificiosXproducto> listacxp = cxpNegocio.listarTodo();
+                    OrificiosXproducto cxp = listacxp.Find(x => x.Producto.Id == prod.Id && x.Orificios.Id == idOrificios);
 
                     lblStockDisponible.Text = "Hay " + cxp.Stock.ToString() + " Productos en stock";
                 }
@@ -75,9 +75,9 @@ namespace Administracion_web
 
         }
 
-        protected void ddlColores_DataBound(object sender, EventArgs e)
+        protected void ddlOrificios_DataBound(object sender, EventArgs e)
         {
-            ddlColores.Items.Insert(0, "--Seleccione un color--");
+            ddlOrificios.Items.Insert(0, "--Seleccione un color--");
 
         }
     }

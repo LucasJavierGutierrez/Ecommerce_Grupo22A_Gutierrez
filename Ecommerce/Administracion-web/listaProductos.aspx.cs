@@ -57,7 +57,7 @@ namespace Administracion_web
             {
                 productoNegocio negocioProducto = new productoNegocio();
                 int idSeleccionado = int.Parse(((Button)sender).CommandArgument);
-                ColoresXproductoNegocio negocioColores = new ColoresXproductoNegocio();
+                OrificiosXproductoNegocio negocioColores = new OrificiosXproductoNegocio();
                 int cantidadStock = negocioColores.sumaStockXProducto(idSeleccionado);
                 if (cantidadStock == 0)
                 {

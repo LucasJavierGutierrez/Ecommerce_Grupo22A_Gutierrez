@@ -21,17 +21,17 @@ namespace Administracion_web
                 if(Request.QueryString["Id"] != null && !IsPostBack)
                 {
                     int idColor = int.Parse(Request.QueryString["Id"]);
-                    colorNegocio negocioColor = new colorNegocio();
-                    List<Color> listaColor= negocioColor.listarTodos();
-                    Color color = listaColor.Find(x => x.Id == idColor);
+                    OrificiosNegocio negocioColor = new OrificiosNegocio();
+                    List<Orificios> listaColor= negocioColor.listarTodos();
+                    Orificios color = listaColor.Find(x => x.Id == idColor);
                     
                     int idProductoSeleccionado = (int)Session["IdProductoAgregado"];
                     productoNegocio negocioProducto = new productoNegocio();
                     List<Producto> listaProducto = negocioProducto.listar();
                     Producto pr = listaProducto.Find(x => x.Id == idProductoSeleccionado);
 
-                    ColoresXproductoNegocio stockNegocio = new ColoresXproductoNegocio();
-                    ColoresXproducto cxp = (stockNegocio.listarTodo()).Find(x=> x.Producto.Id == idProductoSeleccionado && x.Color.Id == idColor);
+                    OrificiosXproductoNegocio stockNegocio = new OrificiosXproductoNegocio();
+                    OrificiosXproducto cxp = (stockNegocio.listarTodo()).Find(x=> x.Producto.Id == idProductoSeleccionado && x.Orificios.Id == idColor);
                     if (cxp != null)
                     {
                         txtStock.Text = cxp.Stock.ToString();
@@ -60,17 +60,17 @@ namespace Administracion_web
             List<Producto> listaProducto = prNegocio.listar();
             Producto pr = listaProducto.Find(x => x.Id == idProducto);
             int idColorParametro = int.Parse(Request.QueryString["Id"].ToString());
-            colorNegocio colorNegocio = new colorNegocio();
-            List<Color> listColor = colorNegocio.listarTodos();
-            Color color = listColor.Find(x => x.Id == idColorParametro);
+            OrificiosNegocio colorNegocio = new OrificiosNegocio();
+            List<Orificios> listColor = colorNegocio.listarTodos();
+            Orificios color = listColor.Find(x => x.Id == idColorParametro);
 
             int cantStock = int.Parse(txtStock.Text);
-            ColoresXproducto cxp = new ColoresXproducto();
+            OrificiosXproducto cxp = new OrificiosXproducto();
             cxp.Producto = pr;
-            cxp.Color = color;
+            cxp.Orificios = color;
             cxp.Stock = int.Parse(txtStock.Text);
-            ColoresXproductoNegocio negColor = new ColoresXproductoNegocio();
-            ColoresXproducto coloresXproductoencontrado = (negColor.listarTodo()).Find(X => X.Producto.Id == idProducto && X.Color.Id == idColorParametro);
+            OrificiosXproductoNegocio negColor = new OrificiosXproductoNegocio();
+            OrificiosXproducto coloresXproductoencontrado = (negColor.listarTodo()).Find(X => X.Producto.Id == idProducto && X.Orificios.Id == idColorParametro);
             if (coloresXproductoencontrado == null)
             {
                 negColor.agregarSP(cxp);

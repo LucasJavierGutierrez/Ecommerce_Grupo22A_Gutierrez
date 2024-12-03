@@ -11,34 +11,34 @@ namespace Administracion_web
 {
 
 
-    public partial class Carrito
+    public partial class listaMarcas
     {
 
         /// <summary>
-        /// Control repetidor.
+        /// Control dgvListaMarcas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater repetidor;
+        protected global::System.Web.UI.WebControls.GridView dgvListaMarcas;
 
         /// <summary>
-        /// Control lblPrecioTotal.
+        /// Control chkConfirmarEliminacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrecioTotal;
+        protected global::System.Web.UI.WebControls.CheckBox chkConfirmarEliminacion;
 
         /// <summary>
-        /// Control btnComprar.
+        /// Control btnConfirmaEliminar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnComprar;
+        protected global::System.Web.UI.WebControls.Button btnConfirmaEliminar;
     }
 }

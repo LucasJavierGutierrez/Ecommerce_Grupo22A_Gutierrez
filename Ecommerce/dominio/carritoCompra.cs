@@ -22,7 +22,7 @@ namespace dominio
     {
         public int id { get; set; }
         public Producto item { get; set; }
-        public Color color { get; set; }
+        public Orificios Orificios { get; set; }
         public int cantidad { get; set; }
         public decimal subtotal { get; set; }
     }

@@ -8,11 +8,11 @@ using dominio;
 
 namespace negocio
 {
-    public class colorNegocio
+    public class OrificiosNegocio
     {
-        public List<Color> listar(int idProducto) // en detalle productos muestra los colores disponibles
+        public List<Orificios> listar(int idProducto) // en detalle productos muestra los colores disponibles
         {
-            List<Color> lista = new List<Color>();
+            List<Orificios> lista = new List<Orificios>();
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
@@ -20,19 +20,19 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT C.ID, C.NOMBRE FROM COLORES_X_PRODUCTO CXP INNER JOIN COLORES C ON CXP.IDCOLOR=C.ID WHERE CXP.IDPRODUCTO = " + idProducto + " AND CXP.STOCK > 0";
+                comando.CommandText = "SELECT C.ID, C.NOMBRE FROM ORIFICIOS_X_PRODUCTO CXP INNER JOIN ORIFICIOS C ON CXP.IDORIFICIOS=C.ID WHERE CXP.IDPRODUCTO = " + idProducto + " AND CXP.STOCK > 0";
                 comando.Connection = conexion;
                 conexion.Open();
 
                 lector = comando.ExecuteReader();
                 while (lector.Read())
                 {
-                    Color color = new Color();
-                    color.Id = (int)lector["ID"];
+                    Orificios Orificios = new Orificios();
+                    Orificios.Id = (int)lector["ID"];
                     if (!(lector["NOMBRE"] is DBNull))
-                        color.Nombre = (string)lector["NOMBRE"];
+                        Orificios.Nombre = (string)lector["NOMBRE"];
 
-                    lista.Add(color);
+                    lista.Add(Orificios);
                 }
 
                 //conexion.Close();
@@ -50,9 +50,9 @@ namespace negocio
         }
 
 
-        public List<Color> listarTodos() // en el agregar Producto, tengo que mostrar TODOS los colores para que indique cual quiere agregar
+        public List<Orificios> listarTodos() // en el agregar Producto, tengo que mostrar TODOS los orificios para que indique cual quiere agregar
         {
-            List<Color> lista = new List<Color>();
+            List<Orificios> lista = new List<Orificios>();
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
@@ -60,18 +60,18 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=ECOMMERCE; integrated security = true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT C.ID, C.NOMBRE FROM COLORES C ";
+                comando.CommandText = "SELECT C.ID, C.NOMBRE FROM ORIFICIOS C ";
                 comando.Connection = conexion;
                 conexion.Open();
 
                 lector = comando.ExecuteReader();
                 while (lector.Read())
                 {
-                    Color color = new Color();
-                    color.Id = (int)lector["ID"];
+                    Orificios Orificios = new Orificios();
+                    Orificios.Id = (int)lector["ID"];
                     if (!(lector["NOMBRE"] is DBNull))
-                        color.Nombre = (string)lector["NOMBRE"];
-                    lista.Add(color);
+                        Orificios.Nombre = (string)lector["NOMBRE"];
+                    lista.Add(Orificios);
                 }
 
                 //conexion.Close();
