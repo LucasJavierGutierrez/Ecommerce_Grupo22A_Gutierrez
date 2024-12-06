@@ -13,7 +13,7 @@
             </div>
             <div class="mb-3">
                 <asp:Button CssClass="btn btn-primary" ID="btnSiguiente" OnClick="btnAceptar_Click" Text="Siguiente" runat="server" />
-               <%--CUANDO APRETO EL BOTON, TENGO QUE DAR DE ALTA LA TABLA PRODUCTO PARA PODER CREAR UN ID MARCA--%>
+               <%--CUANDO APRETO EL BOTON, TENGO QUE DAR DE ALTA LA TABLA PRODUCTO PARA PODER CREAR UN ID Material--%>
             </div>
         </div>
         <div class="col-2"></div>

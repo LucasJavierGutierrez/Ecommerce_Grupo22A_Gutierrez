@@ -21,8 +21,8 @@
 
             </div>
             <div class="mb-3">
-                <asp:Label Text="Marca" CssClass="form-label" runat="server" />
-                <asp:DropDownList ID="ddlMarca" CssClass="form-select" runat="server"></asp:DropDownList>
+                <asp:Label Text="Material" CssClass="form-label" runat="server" />
+                <asp:DropDownList ID="ddlMaterial" CssClass="form-select" runat="server"></asp:DropDownList>
             </div>
             <div class="mb-3">
                 <asp:Label Text="Precio" CssClass="form-label" runat="server" />

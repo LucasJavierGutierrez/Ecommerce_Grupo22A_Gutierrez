@@ -7,7 +7,7 @@
         <hr />
         <div style="text-align: center;">
             <a type="submit" class="btn btn-light" href="listaProductos.aspx">Productos</a>
-            <a type="submit" class="btn btn-light" href="listaMarcas.aspx">Marcas</a>
+            <a type="submit" class="btn btn-light" href="ListaMateriales.aspx">Materiales</a>
             <a type="submit" class="btn btn-light" href="listaCategorias.aspx">Categorias</a>
         </div>
         <hr />

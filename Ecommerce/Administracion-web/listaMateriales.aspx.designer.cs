@@ -11,17 +11,17 @@ namespace Administracion_web
 {
 
 
-    public partial class listaMarcas
+    public partial class listaMateriales
     {
 
         /// <summary>
-        /// Control dgvListaMarcas.
+        /// Control dgvListaMateriales.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvListaMarcas;
+        protected global::System.Web.UI.WebControls.GridView dgvListaMateriales;
 
         /// <summary>
         /// Control chkConfirmarEliminacion.

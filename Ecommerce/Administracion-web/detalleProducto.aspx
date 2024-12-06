@@ -38,16 +38,15 @@
                 <h4 style="padding-top: 30px;" class="card-title"><%= prod.Nombre %></h4>
                 <h6 class="card-text" style="font-weight: bold;"><%= prod.Material.Nombre%></h6>
                 <p class="card-text" style="font-weight: bold;"><%= prod.Tipo.Nombre%></p>
-                <%if (prod.Tipo.Nombre == "Notebook" || prod.Tipo.Nombre == "PC")
+                <%if (prod.Tipo.Nombre == "Placas" || prod.Tipo.Nombre == "Placa")
                     {%>
 
-                <p style="color: black;" class="card-text">DISCO:          <%= prod.TipoDisco %></p>
-                <p style="color: black;" class="card-text">PROCESADOR:     <%= prod.Procesador %></p>
-                <p style="color: black;" class="card-text">SIST. OPERATIVO:<%= prod.SistemaOperativo%></p>
-                <p style="color: black;" class="card-text">PLACA VIDEO:    <%= prod.PlacaVideo%></p>
+ 
+                <p style="color: black;" class="card-text">LADO:    <%= prod.Lado%></p>
                 <% } %>
-                <p style="color: black;" class="card-text">MEMORIA INTERNA:<%= prod.MemoriaInterna%> GB</p>
-                <p style="color: black;" class="card-text">MEMORIA RAM:   <%= prod.MemoriaRam%> GB</p>
+                               <p style="color: black;" class="card-text">ORIFICIOS:          <%= prod.Cantidad_Orificios %></p>
+                <p style="color: black;" class="card-text">DIAMETRO:     <%= prod.Diametro %></p>
+                <p style="color: black;" class="card-text">TIPO DE BLOQUEO:<%= prod.Tipo_Bloqueo%></p>
                 <p class="card-text"><small class="text-muted">$ <%= prod.Precio%></small></p>
                 <%if (prod.Descripcion != "")
                     {%>

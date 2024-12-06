@@ -116,14 +116,14 @@
             <div class="col">
                 <div class="card">
                     <div class="face front">
-                        <img src="../img/ImagenPlacaMano.jpg" alt="Tornillos" />
+                        <img src="../img/ImagenTornillo.jpg" alt="Tornillos" />
                         <h3>Tornillos</h3>
                     </div>
                     <div class="face back">
                         <h3>Tornillos</h3>
                         <p>Ver todos los productos Tornillos</p>
                         <div class="link">
-                            <a href="ShopCelulares.aspx">Celulares</a>
+                            <a href="ShopTornillos.aspx">Tornillos</a>
                         </div>
                     </div>
                 </div>
@@ -131,14 +131,14 @@
             <div class="col">
                 <div class="card">
                     <div class="face front">
-                        <img src="../img/ImagenPlaca.png" alt="Placas" />
+                        <img src="../img/ImagenPlaca.jpg" alt="Placas" />
                         <h3> Placas</h3>
                     </div>
                     <div class="face back">
                         <h3>Placas de Titanio</h3>
                         <p>Ver todos los productos Placas</p>
                         <div class="link">
-                            <a href="ShopCompus.aspx">Placas de Titanio</a>
+                            <a href="ShopPlacas.aspx">Placas de Titanio</a>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
             <div class="col">
                 <div class="card">
                     <div class="face front">
-                        <img src="../img/Card.jpg" alt="Todos los productos" />
+                        <img src="../img/TodoCard.jpg" alt="Todos los productos" />
                         <h3>Ver todo</h3>
                     </div>
                     <div class="face back">

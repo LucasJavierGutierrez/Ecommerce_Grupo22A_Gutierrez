@@ -23,8 +23,8 @@ namespace Administracion_web
             {
                 materialNegocio negocioMaterial = new materialNegocio();
                 int idSeleccionado = int.Parse(Request.QueryString["Id"]);
-                Material marca = (negocioMaterial.listar()).Find(x => x.Id == idSeleccionado);
-                txtNombre.Text = marca.Nombre;
+                Material Material = (negocioMaterial.listar()).Find(x => x.Id == idSeleccionado);
+                txtNombre.Text = Material.Nombre;
             }
             
 
@@ -38,16 +38,16 @@ namespace Administracion_web
             
             Material nuevo = new Material();
             nuevo.Nombre = txtNombre.Text;
-            materialNegocio negocioMarca = new materialNegocio();
+            materialNegocio negocioMaterial = new materialNegocio();
             if (Request.QueryString["Id"]== null)
             {
-                negocioMarca.agregar(nuevo);
-                Response.Redirect("listaMarcas.aspx", false);
+                negocioMaterial.agregar(nuevo);
+                Response.Redirect("ListaMateriales.aspx", false);
             }else
             {
                 int id = int.Parse(Request.QueryString["Id"]);
-                negocioMarca.ModificarSP(id, nuevo);
-                Response.Redirect("listaMarcas.aspx", false);
+                negocioMaterial.ModificarSP(id, nuevo);
+                Response.Redirect("ListaMateriales.aspx", false);
             }
 
 

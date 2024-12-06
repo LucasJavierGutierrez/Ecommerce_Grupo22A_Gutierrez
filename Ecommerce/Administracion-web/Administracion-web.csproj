@@ -64,32 +64,46 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="agregarMaterial.aspx" />
+    <Content Include="agregarOrificios.aspx" />
     <Content Include="CreaCuenta.aspx" />
     <Content Include="Devoluciones.aspx" />
     <Content Include="Error.aspx" />
-    <Content Include="agregarColores.aspx" />
     <Content Include="agregarTipo.aspx" />
-    <Content Include="agregarMarca.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="detalleProducto.aspx" />
     <Content Include="agregarProducto.aspx" />
     <Content Include="ErrorLogin.aspx" />
+    <Content Include="listaMateriales.aspx" />
     <Content Include="MisCompras.aspx" />
     <Content Include="listaCategorias.aspx" />
-    <Content Include="listaMarcas.aspx" />
     <Content Include="listaProductos.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="misComprasDetalle.aspx" />
     <Content Include="quienesSomos.aspx" />
-    <Content Include="ShopCompus.aspx" />
-    <Content Include="ShopCelulares.aspx" />
+    <Content Include="ShopPlacas.aspx" />
+    <Content Include="ShopTornillos.aspx" />
     <Content Include="ShopTodos.aspx" />
     <Content Include="SolicitudesDevoluciones.aspx" />
     <Content Include="stock.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="agregarMaterial.aspx.cs">
+      <DependentUpon>agregarMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agregarMaterial.aspx.designer.cs">
+      <DependentUpon>agregarMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="agregarOrificios.aspx.cs">
+      <DependentUpon>agregarOrificios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agregarOrificios.aspx.designer.cs">
+      <DependentUpon>agregarOrificios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreaCuenta.aspx.cs">
       <DependentUpon>CreaCuenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -111,26 +125,12 @@
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
-    <Compile Include="agregarColores.aspx.cs">
-      <DependentUpon>agregarColores.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="agregarColores.aspx.designer.cs">
-      <DependentUpon>agregarColores.aspx</DependentUpon>
-    </Compile>
     <Compile Include="agregarTipo.aspx.cs">
       <DependentUpon>agregarTipo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="agregarTipo.aspx.designer.cs">
       <DependentUpon>agregarTipo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="agregarMarca.aspx.cs">
-      <DependentUpon>agregarMarca.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="agregarMarca.aspx.designer.cs">
-      <DependentUpon>agregarMarca.aspx</DependentUpon>
     </Compile>
     <Compile Include="Carrito.aspx.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
@@ -167,6 +167,13 @@
     <Compile Include="ErrorLogin.aspx.designer.cs">
       <DependentUpon>ErrorLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="listaMateriales.aspx.cs">
+      <DependentUpon>listaMateriales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listaMateriales.aspx.designer.cs">
+      <DependentUpon>listaMateriales.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MisCompras.aspx.cs">
       <DependentUpon>MisCompras.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -180,13 +187,6 @@
     </Compile>
     <Compile Include="listaCategorias.aspx.designer.cs">
       <DependentUpon>listaCategorias.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="listaMarcas.aspx.cs">
-      <DependentUpon>listaMarcas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="listaMarcas.aspx.designer.cs">
-      <DependentUpon>listaMarcas.aspx</DependentUpon>
     </Compile>
     <Compile Include="listaProductos.aspx.cs">
       <DependentUpon>listaProductos.aspx</DependentUpon>
@@ -217,19 +217,19 @@
     <Compile Include="quienesSomos.aspx.designer.cs">
       <DependentUpon>quienesSomos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ShopCompus.aspx.cs">
-      <DependentUpon>ShopCompus.aspx</DependentUpon>
+    <Compile Include="ShopPlacas.aspx.cs">
+      <DependentUpon>ShopPlacas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ShopCompus.aspx.designer.cs">
-      <DependentUpon>ShopCompus.aspx</DependentUpon>
+    <Compile Include="ShopPlacas.aspx.designer.cs">
+      <DependentUpon>ShopPlacas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ShopCelulares.aspx.cs">
-      <DependentUpon>ShopCelulares.aspx</DependentUpon>
+    <Compile Include="ShopTornillos.aspx.cs">
+      <DependentUpon>ShopTornillos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ShopCelulares.aspx.designer.cs">
-      <DependentUpon>ShopCelulares.aspx</DependentUpon>
+    <Compile Include="ShopTornillos.aspx.designer.cs">
+      <DependentUpon>ShopTornillos.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShopTodos.aspx.cs">
       <DependentUpon>ShopTodos.aspx</DependentUpon>

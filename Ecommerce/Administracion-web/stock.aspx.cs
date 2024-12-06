@@ -81,7 +81,7 @@ namespace Administracion_web
                 negColor.modificarSP(cxp);
             }
 
-            Response.Redirect("agregarColores.aspx", false);
+            Response.Redirect("agregarOrificios.aspx", false);
         }
 
         protected void btnSumarStock_Click(object sender, EventArgs e)

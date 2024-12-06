@@ -8,19 +8,19 @@ using System.Web.UI.WebControls;
 
 namespace Administracion_web
 {
-    public partial class agregarColores : System.Web.UI.Page
+    public partial class agregarOrificios : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             OrificiosNegocio negocio = new OrificiosNegocio();
-            dgvColores.DataSource = negocio.listarTodos();
-            dgvColores.DataBind();
+            dgvOrificios.DataSource = negocio.listarTodos();
+            dgvOrificios.DataBind();
 
         }
 
-        protected void dgvColores_SelectedIndexChanged(object sender, EventArgs e)
+        protected void dgvOrificios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string id = dgvColores.SelectedDataKey.Value.ToString();
+            string id = dgvOrificios.SelectedDataKey.Value.ToString();
             Response.Redirect("stock.aspx?Id=" + id);
         }
     }

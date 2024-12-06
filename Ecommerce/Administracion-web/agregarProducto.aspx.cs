@@ -26,10 +26,10 @@ namespace Administracion_web
                 ddlTipo.DataBind();
 
                 materialNegocio negocioMaterial = new materialNegocio();
-                ddlMarca.DataSource = negocioMaterial.listar();
-                ddlMarca.DataTextField = "NOMBRE";
-                ddlMarca.DataValueField = "ID";
-                ddlMarca.DataBind();
+                ddlMaterial.DataSource = negocioMaterial.listar();
+                ddlMaterial.DataTextField = "NOMBRE";
+                ddlMaterial.DataValueField = "ID";
+                ddlMaterial.DataBind();
             }
 
             string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
@@ -49,7 +49,7 @@ namespace Administracion_web
                 txtImagenURL3.Text = seleccionado.Imagen3;
                 txtImagenURL4.Text = seleccionado.Imagen4;
 
-                ddlMarca.SelectedValue = seleccionado.Material.Id.ToString();
+                ddlMaterial.SelectedValue = seleccionado.Material.Id.ToString();
                 ddlTipo.SelectedValue = seleccionado.Tipo.Id.ToString();
 
 
@@ -81,7 +81,7 @@ namespace Administracion_web
                 nuevo.Nombre = txtNombre.Text;
                 nuevo.Descripcion = txtDescripcion.Text;
                 nuevo.Material = new Material();
-                nuevo.Material.Id = int.Parse(ddlMarca.SelectedValue);
+                nuevo.Material.Id = int.Parse(ddlMaterial.SelectedValue);
                 nuevo.Tipo = new Tipo();
                 nuevo.Tipo.Id = int.Parse(ddlTipo.SelectedValue);
                 if (txtMemoriaInterna.Text == "" || txtMemoriaRam.Text == "")

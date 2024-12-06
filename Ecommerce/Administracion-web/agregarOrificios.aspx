@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="agregarColores.aspx.cs" Inherits="Administracion_web.agregarColores" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="agregarOrificios.aspx.cs" Inherits="Administracion_web.agregarOrificios" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <div class="row">
         <h3 style="color: grey;">Colores</h3>
 
-        <asp:GridView ID="dgvColores" runat="server" Style="width: 50%;" OnClass="table" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-ligth table-striped" OnSelectedIndexChanged="dgvColores_SelectedIndexChanged">
+        <asp:GridView ID="dgvOrificios" runat="server" Style="width: 50%;" OnClass="table" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-ligth table-striped" OnSelectedIndexChanged="dgvOrificios_SelectedIndexChanged">
             <Columns>
                 <asp:BoundField HeaderText="Color" DataField="Nombre" />
                 <asp:CommandField HeaderText="agrega Stock" ShowSelectButton="true" SelectText="stock" />

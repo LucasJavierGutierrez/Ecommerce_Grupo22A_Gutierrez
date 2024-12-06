@@ -42,11 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="materialNegocio.cs" />
     <Compile Include="OrificiosXproductoNegocio.cs" />
     <Compile Include="EmailServices.cs" />
     <Compile Include="OrificiosNegocio.cs" />
     <Compile Include="CompraNegocio.cs" />
-    <Compile Include="marcaNegocio.cs" />
     <Compile Include="productoNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolicitudDevolucionNegocio.cs" />

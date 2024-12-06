@@ -10,31 +10,31 @@ using System.Web.UI.WebControls;
 
 namespace Administracion_web
 {
-    public partial class listaMarcas : System.Web.UI.Page
+    public partial class listaMateriales : System.Web.UI.Page
     {
         public bool confirmaEliminacion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             confirmaEliminacion = false;
             materialNegocio negocio = new materialNegocio();
-            dgvListaMarcas.DataSource = negocio.listar();
-            dgvListaMarcas.DataBind();
+            dgvListaMateriales.DataSource = negocio.listar();
+            dgvListaMateriales.DataBind();
         }
 
-        protected void dgvListaMarcas_SelectedIndexChanged(object sender, EventArgs e)
+        protected void dgvListaMateriales_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string idSeleccionado = dgvListaMarcas.SelectedDataKey.Value.ToString();
+            string idSeleccionado = dgvListaMateriales.SelectedDataKey.Value.ToString();
             Response.Redirect("agregarMaterial.aspx?Id=" + idSeleccionado, false);
        
         }
 
-        protected void dgvListaMarcas_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void dgvListaMateriales_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
             int index = Convert.ToInt32(e.CommandArgument);
-            int idSeleccionado = int.Parse(dgvListaMarcas.DataKeys[index]["Id"].ToString());
-            Session.Add("idMarcaEliminar", idSeleccionado);
-   ///         string value = dgvListaMarcas.DataKeys[index]["Id"].ToString(); // Esto captura el ID de la marca seleccionada en ELIMINAR
+            int idSeleccionado = int.Parse(dgvListaMateriales.DataKeys[index]["Id"].ToString());
+            Session.Add("idMaterialEliminar", idSeleccionado);
+   ///         string value = dgvListaMateriales.DataKeys[index]["Id"].ToString(); // Esto captura el ID de la Material seleccionada en ELIMINAR
               
                 confirmaEliminacion = true;
             
@@ -49,8 +49,8 @@ namespace Administracion_web
             {
                 if (chkConfirmarEliminacion.Checked)
                 {
-                    int idSeleccionado = int.Parse(Session["idMarcaEliminar"].ToString());
-                    materialNegocio negocioMarca = new materialNegocio();
+                    int idSeleccionado = int.Parse(Session["idMaterialEliminar"].ToString());
+                    materialNegocio NegocioMaterial = new materialNegocio();
 
           
 
@@ -67,15 +67,15 @@ namespace Administracion_web
                         {
                             if (item.Stock == 0)
                             {
-                                negocioMarca.eliminarConSP(idSeleccionado);
-                                Response.Redirect("listaMarcas.aspx");
+                                NegocioMaterial.eliminarConSP(idSeleccionado);
+                                Response.Redirect("ListaMateriales.aspx");
 
                                 break;
                             }
                                 
                             else
                             {
-                                Session.Add("Error", "No se ha podido eliminar la marca ya que aún cuenta con stock");
+                                Session.Add("Error", "No se ha podido eliminar la Material ya que aún cuenta con stock");
                                 Response.Redirect("Error.aspx", false);
 
                                 break;

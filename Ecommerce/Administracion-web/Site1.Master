@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="navbar-nav" style="float: right; padding-right: 3px; padding-left=15px;">
+                <div class="navbar-nav" style="float: right; padding-right: 3px; padding-left: 15px;">
                     <%if ((dominio.Usuario)Session["Usuario"] != null && tu == dominio.TipoUsuario.ADMIN)
                         {%>
                     <a class="nav-link" style="color: white;" href="listaProductos.aspx"><i class="fa-sharp fa-solid fa-gear"></i></a>

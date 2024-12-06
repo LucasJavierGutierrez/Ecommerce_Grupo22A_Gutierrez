@@ -14,7 +14,7 @@
         <hr />
         <div style="text-align: center;">
             <a type="submit" class="btn btn-light" href="listaProductos.aspx">Productos</a>
-            <a type="submit" class="btn btn-light" href="listaMarcas.aspx">Marcas</a>
+            <a type="submit" class="btn btn-light" href="ListaMateriales.aspx">Materiales</a>
             <a type="submit" class="btn btn-light" href="listaCategorias.aspx">Categorias</a>
             <hr />
         </div>
@@ -42,7 +42,7 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title"><%#Eval("Nombre")%></h5>
-                                <p style="color: grey"><%#Eval("Marca.Nombre")%></p>
+                                <p style="color: grey"><%#Eval("Material.Nombre")%></p>
                                 <p style="color: grey;" class="card-text"><%#Eval("Precio")%></p>
                                 <a href="agregarProducto.aspx?id=<%#Eval("Id")%>" class="btn btn-primary">Modificar</a>
                                 <asp:Button ID="btnEliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click1" OnClientClick="return getValue()" CommandArgument='<%#Eval("Id")%>' Text="Eliminar" runat="server" />

@@ -66,7 +66,7 @@ namespace Administracion_web
                 }
                 else
                 {
-                    Session.Add("Error", "No se ha podido eliminar la marca ya que aún cuenta con stock");
+                    Session.Add("Error", "No se ha podido eliminar la Material ya que aún cuenta con stock");
                     Response.Redirect("Error.aspx", false);
 
                 }
