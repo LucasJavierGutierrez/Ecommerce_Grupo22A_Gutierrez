@@ -69,58 +69,40 @@ namespace Administracion_web
         protected global::System.Web.UI.WebControls.Button btnSiguiente;
 
         /// <summary>
-        /// Control txtMemoriaInterna.
+        /// Control txtCantidadOrificios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMemoriaInterna;
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadOrificios;
 
         /// <summary>
-        /// Control txtMemoriaRam.
+        /// Control txtDiametro.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMemoriaRam;
+        protected global::System.Web.UI.WebControls.TextBox txtDiametro;
 
         /// <summary>
-        /// Control txtProcesador.
+        /// Control txtTipoBloqueo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProcesador;
+        protected global::System.Web.UI.WebControls.TextBox txtTipoBloqueo;
 
         /// <summary>
-        /// Control txtDisco.
+        /// Control txtLado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDisco;
-
-        /// <summary>
-        /// Control txtSistemaOperativo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSistemaOperativo;
-
-        /// <summary>
-        /// Control txtPlacaVideo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPlacaVideo;
+        protected global::System.Web.UI.WebControls.TextBox txtLado;
 
         /// <summary>
         /// Control txtImagenURL1.

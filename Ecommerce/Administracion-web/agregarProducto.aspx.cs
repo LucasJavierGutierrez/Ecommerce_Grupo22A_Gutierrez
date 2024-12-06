@@ -41,9 +41,9 @@ namespace Administracion_web
                 txtNombre.Text = seleccionado.Nombre;
                 txtDescripcion.Text = seleccionado.Descripcion;
                 txtPrecio.Text = seleccionado.Precio.ToString();
-                txtMemoriaInterna.Text = seleccionado.Cantidad_Orificios.ToString();
-                txtMemoriaRam.Text = seleccionado.Diametro.ToString();
-                txtProcesador.Text = seleccionado.Tipo_Bloqueo;
+                txtCantidadOrificios.Text = seleccionado.Cantidad_Orificios.ToString();
+                txtDiametro.Text = seleccionado.Diametro.ToString();
+                txtTipoBloqueo.Text = seleccionado.Tipo_Bloqueo;
                 txtImagenURL1.Text = seleccionado.Imagen1;
                 txtImagenURL2.Text = seleccionado.Imagen2;
                 txtImagenURL3.Text = seleccionado.Imagen3;
@@ -75,7 +75,7 @@ namespace Administracion_web
         protected void btnSiguiente_Click(object sender, EventArgs e)
         {
 
-            if (txtMemoriaRam.Text != "" && txtMemoriaInterna.Text != "")
+            if (txtDiametro.Text != "" && txtCantidadOrificios.Text != "")
             {
                 Producto nuevo = new Producto();
                 nuevo.Nombre = txtNombre.Text;
@@ -84,19 +84,19 @@ namespace Administracion_web
                 nuevo.Material.Id = int.Parse(ddlMaterial.SelectedValue);
                 nuevo.Tipo = new Tipo();
                 nuevo.Tipo.Id = int.Parse(ddlTipo.SelectedValue);
-                if (txtMemoriaInterna.Text == "" || txtMemoriaRam.Text == "")
+                if (txtCantidadOrificios.Text == "" || txtDiametro.Text == "")
                 {
                     nuevo.Cantidad_Orificios = null;
                     nuevo.Diametro = 0; ///null;
                 }
                 else
                 {
-                    nuevo.Cantidad_Orificios = int.Parse(txtMemoriaInterna.Text);
-                    nuevo.Diametro = int.Parse(txtMemoriaRam.Text);
+                    nuevo.Cantidad_Orificios = int.Parse(txtCantidadOrificios.Text);
+                    nuevo.Diametro = int.Parse(txtDiametro.Text);
                 }
 
-                nuevo.Tipo_Bloqueo = txtProcesador.Text.ToString();
-                nuevo.Lado = txtDisco.Text.ToString();
+                nuevo.Tipo_Bloqueo = txtTipoBloqueo.Text.ToString();
+                nuevo.Lado = txtLado.Text.ToString();
 
                 nuevo.Imagen1 = txtImagenURL1.Text;
                 nuevo.Imagen2 = txtImagenURL2.Text;

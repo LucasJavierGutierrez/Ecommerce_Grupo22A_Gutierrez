@@ -7,7 +7,7 @@
 
         <asp:GridView ID="dgvOrificios" runat="server" Style="width: 50%;" OnClass="table" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-ligth table-striped" OnSelectedIndexChanged="dgvOrificios_SelectedIndexChanged">
             <Columns>
-                <asp:BoundField HeaderText="Color" DataField="Nombre" />
+                <asp:BoundField HeaderText="Orificios" DataField="Nombre" />
                 <asp:CommandField HeaderText="agrega Stock" ShowSelectButton="true" SelectText="stock" />
             </Columns>
         </asp:GridView>

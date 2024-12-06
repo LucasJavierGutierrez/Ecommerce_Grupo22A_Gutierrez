@@ -36,31 +36,23 @@
         <div class="col-2"></div>
         <div class="col-4">
             <div class="mb-3">
-                <asp:Label Text="Memoria Interna" CssClass="form-label" runat="server" />
-                <asp:TextBox ID="txtMemoriaInterna" CssClass="form-control" runat="server" />
+                <asp:Label Text="Orificios" CssClass="form-label" runat="server" />
+                <asp:TextBox ID="txtCantidadOrificios" CssClass="form-control" runat="server" />
             </div>
             <div class="mb-3">
-                <asp:Label Text="RAM" CssClass="form-label" runat="server" />
-                <asp:TextBox ID="txtMemoriaRam" CssClass="form-control" runat="server" />
+                <asp:Label Text="Diametro" CssClass="form-label" runat="server" />
+                <asp:TextBox ID="txtDiametro" CssClass="form-control" runat="server" />
             </div>
             <div class="mb-3">
-                <asp:Label Text="Procesador" CssClass="form-label" runat="server" />
-                <asp:TextBox ID="txtProcesador" CssClass="form-control" runat="server" />
+                <asp:Label Text="Tipo de Bloqueo" CssClass="form-label" runat="server" />
+                <asp:TextBox ID="txtTipoBloqueo" CssClass="form-control" runat="server" />
             </div>
             <%if (idTipoSeleccionado == 2)
                 { %>
             <div class="mb-3">
-                <asp:Label Text="Disco" CssClass="form-label" runat="server" />
-                <asp:TextBox ID="txtDisco" CssClass="form-control" runat="server" />
-            </div>
-            <div class="mb-3">
-                <asp:Label Text="Sistema Operativo" CssClass="form-label" runat="server" />
-                <asp:TextBox ID="txtSistemaOperativo" CssClass="form-control" runat="server" />
-            </div>
-            <div class="mb-3">
-                <asp:Label Text="Placa de Video" CssClass="form-label" runat="server" />
-                <asp:TextBox ID="txtPlacaVideo" CssClass="form-control" runat="server" />
-            </div>
+                <asp:Label Text="Lado" CssClass="form-label" runat="server" />
+                <asp:TextBox ID="txtLado" CssClass="form-control" runat="server" />
+               </div>
             <% } %>
 
             <div class="mb-3">
